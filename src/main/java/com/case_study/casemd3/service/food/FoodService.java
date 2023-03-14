@@ -1,6 +1,8 @@
 package com.case_study.casemd3.service.food;
 
 import com.case_study.casemd3.model.Food;
+import com.case_study.casemd3.model.Merchant;
+import com.case_study.casemd3.service.merchant.MerchantService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +16,12 @@ import static com.case_study.casemd3.connect.ConnectDB.getConnection;
 public class FoodService implements IFood {
 
 
-    public static final String SELECT_ALL_FROM_FOOD = "SELECT * FROM food WHERE is_active = true";
+    MerchantService merchantService = new MerchantService();
+    public static final String SELECT_ALL_FROM_FOOD = "SELECT F.*,\n" +
+            "       M.*\n" +
+            "from food F\n" +
+            "         join merchant M on M.id = F.merchant_id\n" +
+            "where F.is_active = true;";
     public static final String INSERT_INTO_FOOD = "INSERT INTO food (id,name, price,detail,img_link)" +
             " values (?,?,?,?,?)";
     public static final String DISABLE_FOOD = "UPDATE food SET is_active = false WHERE id =?";
@@ -38,9 +45,13 @@ public class FoodService implements IFood {
                 double price = rs.getDouble("price");
                 String details = rs.getString("detail");
                 String img_link = rs.getString("img_link");
+
+                int merchant_id = rs.getInt("merchant_id");
+                Merchant merchant = merchantService.findById(merchant_id);
+
                 boolean certificate = rs.getBoolean("certificate");
                 boolean is_active = rs.getBoolean("is_active");
-                foods.add(new Food(id, name, price, details, img_link, certificate, is_active));
+                foods.add(new Food(id,name,price,details,img_link,merchant,certificate,is_active));
             }
             conn.commit();
         } catch (SQLException e) {
