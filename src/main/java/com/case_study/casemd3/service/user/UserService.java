@@ -1,6 +1,7 @@
 package com.case_study.casemd3.service.user;
 
 import com.case_study.casemd3.model.User;
+import com.case_study.casemd3.service.address.AddressService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.util.List;
 import static com.case_study.casemd3.connect.ConnectDB.getConnection;
 
 public class UserService implements IUser{
+    AddressService addressService = new AddressService();
     private final String SELECT_ALL_USERS = "select ad.address_name, ur.id, ur.name, ur.email, ur.phone " +
             "from user ur join address ad on ur.address_id = ad.id where is_active = true";
     private final String INSERT = "insert into user(id, username, password, email, name, phone, address_id) " +
@@ -37,7 +39,7 @@ public class UserService implements IUser{
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
                 int address_id = rs.getInt("address_id");
-
+                Address a
                 users.add(new User(id,username,password, email, name, phone, address_id));
             }
             connection.commit();

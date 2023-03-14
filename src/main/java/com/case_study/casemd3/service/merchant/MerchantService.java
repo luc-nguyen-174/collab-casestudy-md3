@@ -115,8 +115,8 @@ public class MerchantService implements IMerchant {
                 String name = res.getString("name");
                 int age = res.getInt("age");
                 String id_number = res.getString("id_number");
-                int province_id = res.getInt("province_id");
-                Address address = addressService.findById(province_id);
+                int address_id = res.getInt("address_id");
+                Address address = addressService.findById(address_id);
                 String phone = res.getString("phone");
                 String email = res.getString("email");
                 boolean is_active = res.getBoolean("is_active");

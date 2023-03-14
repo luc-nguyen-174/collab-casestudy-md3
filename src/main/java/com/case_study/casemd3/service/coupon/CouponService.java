@@ -2,6 +2,7 @@ package com.case_study.casemd3.service.coupon;
 
 import com.case_study.casemd3.model.Coupon;
 
+import javax.servlet.RequestDispatcher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,8 @@ public class CouponService implements ICoupon{
     private static final String INSERT = "insert into coupon(id, name, value, is_active) values (?, ?, ?, ?)";
     private static final String DISABLE_COUPON = "UPDATE coupon SET is_active = false WHERE id = ?";
     private static final String UPDATE_COUPON = "update coupon set id = ?, name = ?, value = ?, is_active = ?";
+    private static final String SEARCH_COUPON_BY_NAME = "select id, value, is_active from coupon where name = ?";
+    public CouponService(){}
 
     @Override
     public List<Coupon> findAll() {
@@ -181,4 +184,39 @@ public class CouponService implements ICoupon{
         }
         return rowUpdate;
     }
+    public List<Coupon> findCouponByName(String name){
+        List<Coupon> coupons = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(SEARCH_COUPON_BY_NAME);
+            statement.setString(1, name);
+            rs = statement.executeQuery();
+            while (rs.next()){
+                int id = Integer.parseInt(rs.getString("id"));
+                double value = Double.parseDouble(rs.getString("value"));
+                boolean is_value = rs.getBoolean("is_value");
+                coupons.add(new Coupon(id, name, value, is_value));
+
+            }
+        }catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return coupons;
+        }
 }

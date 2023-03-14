@@ -14,6 +14,15 @@ public class Merchant extends Login {
     public Merchant() {
     }
 
+    public Merchant(String name, int age, String id_number, int address_id, String phone, String email) {
+        this.name = name;
+        this.age = age;
+        this.id_number = id_number;
+        this.address_id = address_id;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public Merchant(int id, String name, int age, String id_number, Address address, String phone, String email, boolean is_active) {
         this.id = id;
         this.name = name;

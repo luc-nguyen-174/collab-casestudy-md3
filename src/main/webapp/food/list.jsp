@@ -17,11 +17,23 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Price</th>
+        <th>Details</th>
+        <th>Image</th>
+        <th>Merchant</th>
+        <th>Certificate</th>
     </tr>
-    <c:forEach var="food" items="${foods}">
+    <c:forEach var="food" items="${requestScope.foods}">
         <tr>
             <td><c:out value="${food.id}"/></td>
             <td><c:out value="${food.name}"/></td>
+
+            <td><c:out value="${food.price}"/></td>
+
+            <td><c:out value="${food.detail}"/></td>
+            <td><c:out value="${food.img_link}"/></td>
+            <td><c:out value="${food.merchant.name}"/></td>
+            <td><c:if test="${food.certificate=true}"/><h3>Has Certificate</h3></td>
         </tr>
     </c:forEach>
 </table>

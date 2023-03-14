@@ -43,13 +43,11 @@ public class UserServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
-        }try {
+        }
             switch (action){
                 case "":
                     break;
             }
-        }catch (ServletException e){
-            throw new ServletException(e);
-        }
+
     }
 }

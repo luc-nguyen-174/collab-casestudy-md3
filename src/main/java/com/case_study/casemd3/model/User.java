@@ -8,6 +8,8 @@ public class User {
     private String name;
     private String phone;
     private int address_id;
+    private Address address;
+    private  boolean is_active;
 
     public User() {
     }
@@ -20,6 +22,35 @@ public class User {
         this.name = name;
         this.phone = phone;
         this.address_id = address_id;
+    }
+
+    public User(int id, String userName, String password, String email, String name, String phone,
+                int address_id, Address address, boolean is_active) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+        this.address_id = address_id;
+        this.address = address;
+        this.is_active = is_active;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public boolean isIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
     }
 
     public User(int id, String email, String name, String phone, int address_id) {
