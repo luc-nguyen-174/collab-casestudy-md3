@@ -12,6 +12,14 @@
     <title>Title</title>
 </head>
 <body>
+<p>
+    <c:if test="${message != null}">
+<h2 class="message">${message}</h2>
+</c:if>
+</p>
+<h2>
+    <a href="/food">Back To List</a>
+</h2>
 <form method="post">
     <table border="1" cellpadding="5">
         <caption>Edit Food</caption>
@@ -45,20 +53,32 @@
         </tr>
         <tr>
             <th>Merchant</th>
-            <td><input type="text" name="merchant" id="merchant" size="45"
+            <td><input type="text" name="merchant_id" id="merchant_id" size="45"
                        value="<c:out value='${food.merchant_id}'/>">
             </td>
         </tr>
         <tr>
             <th>Certificate</th>
-            <td><input type="text" name="certificate" id="certificate" size="45"
-                       value="<c:out value='${food.certificate}'/>">
+            <td>
+<%--                <input type="text" name="certificate" id="certificate" size="45">--%>
+                <select name="certificate">
+                    <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                        <option value="${option.value}">${option.key}</option>
+                    </c:forEach>
+                </select>
             </td>
         </tr>
         <tr>
             <th>Active?</th>
-            <td><input type="text" name="is_active" id="is_active" size="45"
-                       value="<c:out value='${food.is_active}'/>">
+            <td>
+                <%--                    <input type="text" name="is_active" id="merchant_id" size="45">--%>
+                <select name="certificate">
+                    <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                        <option value="${option.value}">${option.key}</option>
+                    </c:forEach>
+                </select>
+
+
             </td>
         </tr>
         <tr>

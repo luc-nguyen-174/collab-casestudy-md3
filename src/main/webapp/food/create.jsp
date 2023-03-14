@@ -9,6 +9,7 @@
     <c:if test='${"message" != null}'>
 <h2 class="message">${message}</h2>
 </c:if>
+
 </p>
 <div>
     <form method="post">
@@ -52,12 +53,12 @@
             </tr>
             <tr>
                 <th>Certificate</th>
-
                 <td>
                     <%--                    <input type="text" name="certificate" id="certificate" size="45">--%>
                     <select name="certificate">
-                        <option name="certificate" value="1">True</option>
-                        <option name="certificate" value="0">False</option>
+                        <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                            <option value="${option.value}">${option.key}</option>
+                        </c:forEach>
                     </select>
                 </td>
 
@@ -66,9 +67,10 @@
                 <th>Active?</th>
                 <td>
                     <%--                    <input type="text" name="is_active" id="merchant_id" size="45">--%>
-                    <select name="is_active">
-                        <option name="is_active" value="1">True</option>
-                        <option name="is_active" value="0">False</option>
+                    <select name="certificate">
+                        <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                            <option value="${option.value}">${option.key}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>

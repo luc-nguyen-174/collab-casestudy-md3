@@ -22,7 +22,8 @@ public class FoodService implements IFood {
 //            "from food F\n" +
 //            "         join merchant M on M.id = F.merchant_id\n" +
 //            "where F.is_active = true;";
-    public static final String SELECT_ALL_FROM_FOOD = "SELECT F.id as food_id,\n" +
+    public static final String SELECT_ALL_FROM_FOOD = "" +
+            "SELECT F.id as food_id,\n" +
             "       F.name      as food_name,\n" +
             "       F.price     as   food_price,\n" +
             "       F.detail    as   food_detail,\n" +
@@ -47,7 +48,19 @@ public class FoodService implements IFood {
     public static final String INSERT_INTO_FOOD = "INSERT INTO food (id,name, price,detail,img_link,merchant_id) values (?,?,?,?,?,?)";
     public static final String DISABLE_FOOD = "UPDATE food SET is_active = false WHERE id =?";
     public static final String UPDATE_FOOD_BY_ID = "UPDATE food SET name = ?, price = ?, detail = ?, img_link = ?,merchant_id = ?, certificate = ?, is_active = ? WHERE id = ?";
-    public static final String SELECT_FOOD_BY_ID = "SELECT id,name,price,detail,img_link,merchant_id, certificate, is_active FROM food WHERE id = ? ";
+    public static final String SELECT_FOOD_BY_ID = "" +
+            "SELECT F.id          food_id,\n" +
+            "       F.name        food_name,\n" +
+            "       F.price       food_price,\n" +
+            "       F.detail      food_detail,\n" +
+            "       F.img_link    food_img,\n" +
+            "       F.merchant_id food_merchant,\n" +
+            "       F.certificate food_certi,\n" +
+            "       F.is_active   food_active,\n" +
+            "       M.name        merchant_name\n" +
+            "from food F\n" +
+            "         join merchant M on M.id = F.merchant_id\n" +
+            "where F.id = ?;";
 
     @Override
     public List<Food> findAll() {
@@ -161,14 +174,17 @@ public class FoodService implements IFood {
             statement.setInt(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-                String name = rs.getString("name");
-                double price = rs.getDouble("price");
-                String details = rs.getString("detail");
-                String img_link = rs.getString("img_link");
-                int merchant_id = rs.getInt("merchant_id");
-                boolean certificate = rs.getBoolean("certificate");
-                boolean is_active = rs.getBoolean("is_active");
-                food = new Food(id, name, price, details, img_link, merchant_id, certificate, is_active);
+                String name = rs.getString("food_name");
+                double price = rs.getDouble("food_price");
+                String details = rs.getString("food_detail");
+                String img_link = rs.getString("food_img");
+
+                int merchant_id = rs.getInt("food_merchant");
+                Merchant merchant = merchantService.findById(merchant_id);
+
+                boolean certificate = rs.getBoolean("food_certi");
+                boolean is_active = rs.getBoolean("food_active");
+                food = new Food(id, name, price, details, img_link, merchant, certificate, is_active);
             }
             connection.commit();
         } catch (SQLException e) {
@@ -205,7 +221,7 @@ public class FoodService implements IFood {
             statement.setInt(5, food.getMerchant_id());
             statement.setBoolean(6, food.isCertificate());
             statement.setBoolean(7, food.isIs_active());
-
+            statement.setInt(8,id);
             rowUpdated = statement.executeUpdate() > 0;
             connection.commit();
         } catch (SQLException e) {
