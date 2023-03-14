@@ -73,8 +73,7 @@ public class FoodService implements IFood {
             statement.setString(2, food.getName());
             statement.setDouble(3, food.getPrice());
             statement.setString(4, food.getImg_link());
-            statement.setBoolean(5, food.isCertificate());
-            statement.setBoolean(6, food.isIs_active());
+            statement.setBoolean(5, food.isIs_active());
             statement.executeUpdate();
             conn.commit();
         } catch (SQLException e) {
