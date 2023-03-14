@@ -10,13 +10,13 @@ public interface IAddress extends IGeneric<Address> {
     List<Address> findAll();
 
     @Override
-    void save(Address generic);
+    void save(Address address);
 
     @Override
     Address findById(int id);
 
     @Override
-    boolean update(int id, Address generic);
+    boolean update(int id, Address address);
 
     @Override
     boolean remove(int id);

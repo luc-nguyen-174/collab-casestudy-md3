@@ -10,13 +10,13 @@ public interface IMerchant extends IGeneric<Merchant> {
     List<Merchant> findAll();
 
     @Override
-    void save(Merchant generic);
+    void save(Merchant merchant);
 
     @Override
     Merchant findById(int id);
 
     @Override
-    boolean update(int id, Merchant generic);
+    boolean update(int id, Merchant merchant);
 
     @Override
     boolean remove(int id);
