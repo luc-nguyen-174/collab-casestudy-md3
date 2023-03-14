@@ -31,6 +31,7 @@ public class Food {
         this.merchant = merchant;
     }
 
+
     public Food(int id, String name, double price, String detail, String img_link, boolean certificate, boolean is_active) {
         this.id = id;
         this.name = name;

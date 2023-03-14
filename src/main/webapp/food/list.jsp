@@ -44,8 +44,8 @@
                 <c:if test="${food.certificate=false}"><h3>Do Not Has Certificate</h3></c:if>
             </td>
             <td>
-                <a href="/users?action=edit&id=${user.id}">Edit</a>
-                <a href="/users?action=delete&id=${user.id}">Delete</a>
+                <a href="/food?action=edit&id=${food.id}">Edit</a>
+                <a href="/food?action=delete&id=${food.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
