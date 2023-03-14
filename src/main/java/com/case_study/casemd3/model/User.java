@@ -2,24 +2,54 @@ package com.case_study.casemd3.model;
 
 public class User {
     private int id;
-    private String userName;
+    private String username;
     private String password;
     private String email;
     private String name;
     private String phone;
     private int address_id;
+    private Address address;
+    private  boolean is_active;
 
     public User() {
     }
 
-    public User(int id, String userName, String password, String email, String name, String phone, int address_id) {
+    public User(int id, String username, String password, String email, String name, String phone, int address_id, boolean is_active) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.name = name;
         this.phone = phone;
         this.address_id = address_id;
+        this.is_active = is_active;
+    }
+
+    public User(int id, String username, String password, String email, String name, String phone, Address address, boolean is_active) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.is_active = is_active;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public boolean isIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
     }
 
     public User(int id, String email, String name, String phone, int address_id) {
@@ -38,12 +68,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
