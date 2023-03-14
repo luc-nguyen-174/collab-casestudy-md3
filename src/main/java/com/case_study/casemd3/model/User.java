@@ -14,7 +14,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String userName, String password, String email, String name, String phone, int address_id) {
+    public User(int id, String userName, String password, String email, String name, String phone, int address_id, boolean is_active) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -22,17 +22,16 @@ public class User {
         this.name = name;
         this.phone = phone;
         this.address_id = address_id;
+        this.is_active = is_active;
     }
 
-    public User(int id, String userName, String password, String email, String name, String phone,
-                int address_id, Address address, boolean is_active) {
+    public User(int id, String userName, String password, String email, String name, String phone, Address address, boolean is_active) {
         this.id = id;
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.name = name;
         this.phone = phone;
-        this.address_id = address_id;
         this.address = address;
         this.is_active = is_active;
     }
