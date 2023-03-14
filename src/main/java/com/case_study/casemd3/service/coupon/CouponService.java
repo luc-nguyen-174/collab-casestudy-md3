@@ -19,6 +19,7 @@ public class CouponService implements ICoupon{
     private static final String DISABLE_COUPON = "UPDATE coupon SET is_active = false WHERE id = ?";
     private static final String UPDATE_COUPON = "update coupon set id = ?, name = ?, value = ?, is_active = ?";
     private static final String SEARCH_COUPON_BY_NAME = "select id, value, is_active from coupon where name = ?";
+
     public CouponService(){}
 
     @Override
@@ -200,7 +201,7 @@ public class CouponService implements ICoupon{
                 double value = Double.parseDouble(rs.getString("value"));
                 boolean is_value = rs.getBoolean("is_value");
                 coupons.add(new Coupon(id, name, value, is_value));
-
+                connection.commit();
             }
         }catch (SQLException e) {
             try {
