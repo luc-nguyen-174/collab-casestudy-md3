@@ -22,10 +22,9 @@ public class FoodService implements IFood {
             "from food F\n" +
             "         join merchant M on M.id = F.merchant_id\n" +
             "where F.is_active = true;";
-    public static final String INSERT_INTO_FOOD = "INSERT INTO food (id,name, price,detail,img_link)" +
-            " values (?,?,?,?,?)";
+    public static final String INSERT_INTO_FOOD = "INSERT INTO food (name, price,detail,img_link,merchant_id) values (?,?,?,?,?)";
     public static final String DISABLE_FOOD = "UPDATE food SET is_active = false WHERE id =?";
-    public static final String UPDATE_FOOD_BY_ID = "UPDATE food SET name = ?, price = ?, detail = ?, img_link = ?, certificate = ?, is_active = ? WHERE id = ?";
+    public static final String UPDATE_FOOD_BY_ID = "UPDATE food SET name = ?, price = ?, detail = ?, img_link = ?,merchant_id = ?, certificate = ?, is_active = ? WHERE id = ?";
     public static final String SELECT_FOOD_BY_ID = "SELECT (id,name,price,detail,img_link, certificate, is_active) FROM food WHERE id = ? ";
 
     @Override
@@ -51,7 +50,7 @@ public class FoodService implements IFood {
 
                 boolean certificate = rs.getBoolean("certificate");
                 boolean is_active = rs.getBoolean("is_active");
-                foods.add(new Food(id,name,price,details,img_link,merchant,certificate,is_active));
+                foods.add(new Food(id, name, price, details, img_link, merchant, certificate, is_active));
             }
             conn.commit();
         } catch (SQLException e) {
@@ -80,11 +79,11 @@ public class FoodService implements IFood {
             conn = getConnection();
             conn.setAutoCommit(false);
             statement = conn.prepareStatement(INSERT_INTO_FOOD);
-            statement.setInt(1, food.getId());
-            statement.setString(2, food.getName());
-            statement.setDouble(3, food.getPrice());
+            statement.setString(1, food.getName());
+            statement.setDouble(2, food.getPrice());
+            statement.setString(3, food.getDetail());
             statement.setString(4, food.getImg_link());
-            statement.setBoolean(5, food.isIs_active());
+            statement.setInt(5, food.getMerchant_id());
             statement.executeUpdate();
             conn.commit();
         } catch (SQLException e) {
@@ -116,9 +115,10 @@ public class FoodService implements IFood {
                 double price = rs.getDouble("price");
                 String details = rs.getString("detail");
                 String img_link = rs.getString("img_link");
+                int merchant_id = rs.getInt("merchant_id");
                 boolean certificate = rs.getBoolean("certificate");
                 boolean is_active = rs.getBoolean("is_active");
-                food = new Food(id, name, price, details, img_link, certificate, is_active);
+                food = new Food(id, name, price, details, img_link, merchant_id, certificate, is_active);
             }
             connection.commit();
         } catch (SQLException e) {
@@ -152,8 +152,9 @@ public class FoodService implements IFood {
             statement.setDouble(2, food.getPrice());
             statement.setString(3, food.getDetail());
             statement.setString(4, food.getImg_link());
-            statement.setBoolean(5, food.isCertificate());
-            statement.setBoolean(6, food.isIs_active());
+            statement.setInt(5, food.getMerchant_id());
+            statement.setBoolean(6, food.isCertificate());
+            statement.setBoolean(7, food.isIs_active());
 
             rowUpdated = statement.executeUpdate() > 0;
             connection.commit();
@@ -174,6 +175,8 @@ public class FoodService implements IFood {
         return rowUpdated;
     }
 
+
+    //disable
     @Override
     public boolean remove(int id) {
         boolean rowDisable = false;
@@ -202,6 +205,4 @@ public class FoodService implements IFood {
         }
         return rowDisable;
     }
-
-
 }

@@ -22,6 +22,7 @@ public class Food {
         this.merchant_id = merchant_id;
     }
 
+
     public Food(String name, double price, String detail, String img_link, Merchant merchant) {
         this.name = name;
         this.price = price;
@@ -36,6 +37,17 @@ public class Food {
         this.price = price;
         this.detail = detail;
         this.img_link = img_link;
+        this.certificate = certificate;
+        this.is_active = is_active;
+    }
+
+    public Food(int id, String name, double price, String detail, String img_link, int merchant_id, boolean certificate, boolean is_active) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.detail = detail;
+        this.img_link = img_link;
+        this.merchant_id = merchant_id;
         this.certificate = certificate;
         this.is_active = is_active;
     }
