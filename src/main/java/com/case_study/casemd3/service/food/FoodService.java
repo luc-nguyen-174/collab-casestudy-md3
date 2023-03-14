@@ -202,6 +202,4 @@ public class FoodService implements IFood {
         }
         return rowDisable;
     }
-
-
 }
