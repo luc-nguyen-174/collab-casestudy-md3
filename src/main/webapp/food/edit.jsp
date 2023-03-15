@@ -12,23 +12,73 @@
     <title>Title</title>
 </head>
 <body>
+<p>
+    <c:if test="${message != null}">
+<h2 class="message">${message}</h2>
+</c:if>
+</p>
+<h2>
+    <a href="/food">Back To List</a>
+</h2>
 <form method="post">
     <table border="1" cellpadding="5">
-        <caption>Edit Employee</caption>
+        <caption>Edit Food</caption>
         <c:if test="${food != null}">
-            <input type="hidden" name="id" value="<c:out value='${food.id}' />"/>
+            <input type="hidden" name="id" value="<c:out value='${food.id}'/>"/>
         </c:if>
         <tr>
-            <th>Employee Code</th>
+            <th>Food Name</th>
             <td>
-                <input type="text" name="food_id" id="food_id" size="45"
-                       value="<c:out value='${food.id}' />">
+                <input type="text" name="name" id="name" size="45"
+                       value="<c:out value='${food.name}'/>">
             </td>
         </tr>
         <tr>
-            <th>Employee Name</th>
-            <td><input type="text" name="food_name" id="food_name" size="45"
-                       value="<c:out value='${food.name}' />">
+            <th>Price</th>
+            <td><input type="text" name="price" id="price" size="45"
+                       value="<c:out value='${food.price}'/>">
+            </td>
+        </tr>
+        <tr>
+            <th>Details</th>
+            <td><input type="text" name="detail" id="detail" size="45"
+                       value="<c:out value='${food.detail}'/>">
+            </td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><input type="text" name="img_link" id="img_link" size="45"
+                       value="<c:out value='${food.img_link}'/>">
+            </td>
+        </tr>
+        <tr>
+            <th>Merchant</th>
+            <td><input type="text" name="merchant_id" id="merchant_id" size="45"
+                       value="<c:out value='${food.merchant_id}'/>">
+            </td>
+        </tr>
+        <tr>
+            <th>Certificate</th>
+            <td>
+<%--                <input type="text" name="certificate" id="certificate" size="45">--%>
+                <select name="certificate">
+                    <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                        <option value="${option.value}">${option.key}</option>
+                    </c:forEach>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Active?</th>
+            <td>
+                <%--                    <input type="text" name="is_active" id="merchant_id" size="45">--%>
+                <select name="certificate">
+                    <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                        <option value="${option.value}">${option.key}</option>
+                    </c:forEach>
+                </select>
+
+
             </td>
         </tr>
         <tr>

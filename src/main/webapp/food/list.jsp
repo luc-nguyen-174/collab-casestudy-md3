@@ -12,6 +12,12 @@
     <title>Title</title>
 </head>
 <body>
+<center>
+    <h1>Employee Management</h1>
+    <h2>
+        <a href="/food?action=create">Add New Employee</a>
+    </h2>
+</center>
 <table border="1" cellpadding="5">
     <caption><h2>List of Employees</h2></caption>
     <tr>
@@ -22,6 +28,7 @@
         <th>Image</th>
         <th>Merchant</th>
         <th>Certificate</th>
+        <th>Actions</th>
     </tr>
     <c:forEach var="food" items="${requestScope.foods}">
         <tr>
@@ -31,9 +38,26 @@
             <td><c:out value="${food.price}"/></td>
 
             <td><c:out value="${food.detail}"/></td>
-            <td><c:out value="${food.img_link}"/></td>
+            <td>
+<%--                <c:out value="${food.img_link}"/>--%>
+                <img src="${food.img_link}" alt="food_image">
+            </td>
             <td><c:out value="${food.merchant.name}"/></td>
-            <td><c:if test="${food.certificate=true}"/><h3>Has Certificate</h3></td>
+            <td>
+                <c:choose>
+                    <c:when test="${food.certificate}">
+                        <p>Has Certificate<p>
+                    </c:when>
+                    <c:otherwise>
+                        <p>Do Not Has Certificate</p>
+                    </c:otherwise>
+                </c:choose>
+            </td>
+            <td>
+                <a href="/food?action=edit&id=${food.id}">Edit</a>
+                <a href="/food?action=delete&id=${food.id}">Delete</a>
+                <a href="/food?action=view&id=${food.id}">View</a>
+            </td>
         </tr>
     </c:forEach>
 </table>

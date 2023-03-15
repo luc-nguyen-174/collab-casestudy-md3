@@ -1,17 +1,21 @@
 package com.case_study.casemd3.controller;
 
+import com.case_study.casemd3.model.Address;
 import com.case_study.casemd3.model.Food;
+import com.case_study.casemd3.service.address.AddressService;
 import com.case_study.casemd3.service.food.FoodService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "Servlet", value = "/food")
-public class FoodServlet extends HttpServlet implements IFormServlet{
+public class FoodServlet extends HttpServlet implements IFormServlet {
     private FoodService foodService;
+    private AddressService addressService;
 
     public void init() {
         foodService = new FoodService();
@@ -42,12 +46,6 @@ public class FoodServlet extends HttpServlet implements IFormServlet{
         }
     }
 
-
-
-
-
-
-
     //-------------------------------Method Post---------------------------------
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,6 +71,9 @@ public class FoodServlet extends HttpServlet implements IFormServlet{
     @Override
     public void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("food/create.jsp");
+        List<Food> foods = foodService.findAll();
+        request.setAttribute("foods",foods);
+
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -82,14 +83,22 @@ public class FoodServlet extends HttpServlet implements IFormServlet{
 
     @Override
     public void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Food food = foodService.findById(id);
 
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/food/delete.jsp");
+        request.setAttribute("food", food);
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void showUpdateForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Food food = foodService.findById(id);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("food/edit.jsp");
         request.setAttribute("food", food);
         try {
@@ -101,7 +110,15 @@ public class FoodServlet extends HttpServlet implements IFormServlet{
 
     @Override
     public void viewDetails(HttpServletRequest request, HttpServletResponse response) {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        Food food = foodService.findById(id);
+        request.setAttribute("food", food);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("food/view.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -118,18 +135,23 @@ public class FoodServlet extends HttpServlet implements IFormServlet{
 
     @Override
     public void create(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         String detail = request.getParameter("detail");
         String img_link = request.getParameter("img_link");
         int merchant = Integer.parseInt(request.getParameter("merchant_id"));
-        Food food = new Food(name, price, detail, img_link, merchant);
+        boolean certificate = Boolean.parseBoolean(request.getParameter("certificate"));
+        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+
+        Food food = new Food(id, name, price, detail, img_link, merchant, certificate, is_active);
         try {
             foodService.save(food);
         } catch (Exception e) {
             e.printStackTrace();
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("food/create.jsp");
+        request.setAttribute("message", "New food was created");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -139,11 +161,44 @@ public class FoodServlet extends HttpServlet implements IFormServlet{
 
     @Override
     public void edit(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String detail = request.getParameter("detail");
+        String img_link = request.getParameter("img_link");
+        int merchant = Integer.parseInt(request.getParameter("merchant_id"));
 
+        boolean certificate = Boolean.parseBoolean(request.getParameter("certificate"));
+        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+
+        Food food = new Food(id, name, price, detail, img_link, merchant, certificate, is_active);
+        foodService.update(id, food);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("food/edit.jsp");
+        request.setAttribute("message", "Food was edited");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        try {
+            foodService.remove(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<Food> foods = foodService.findAll();
+        request.setAttribute("foods", foods);
+        request.setAttribute("message", "Food was deleted successfully");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("food/delete.jsp");
 
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
