@@ -21,6 +21,7 @@
         <td>ID</td>
         <td>NAME</td>
         <td>VALUE</td>
+        <td>MERCHANT_ID</td>
         <td>IS_ACTIVE</td>
         <td>ACTION</td>
     </tr>
@@ -29,6 +30,7 @@
             <td><c:out value="${coupon.id}"/></td>
             <td><c:out value="${coupon.name}"/></td>
             <td><c:out value="${coupon.value}"/></td>
+            <td><c:out value="${coupon.merchant.name}"/></td>
             <td><c:out value="${coupon.is_active}"/></td>
             <td>
                 <a href="/coupon?action=view&id=${coupon.id}">VIEW</a>

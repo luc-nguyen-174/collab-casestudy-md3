@@ -34,6 +34,10 @@
                 <td><input type="text" name="value" id="value"></td>
             </tr>
             <tr>
+                <th>Merchant_id</th>
+                <td><input type="text" name="merchant_id" id="merchant_id"></td>
+            </tr>
+            <tr>
                 <th>IS_ACTIVE</th>
                 <td>
                     <select name="is_active">
