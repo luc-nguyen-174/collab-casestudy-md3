@@ -55,7 +55,7 @@ public class FoodService implements IFood {
             "       F.detail      food_detail,\n" +
             "       F.img_link    food_img,\n" +
             "       F.merchant_id food_merchant,\n" +
-            "       F.certificate food_certi,\n" +
+            "       F.certificate  food_certi,\n" +
             "       F.is_active   food_active,\n" +
             "       M.name        merchant_name\n" +
             "from food F\n" +

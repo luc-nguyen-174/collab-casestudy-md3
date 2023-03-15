@@ -2,6 +2,7 @@ package com.case_study.casemd3.controller;
 
 import com.case_study.casemd3.model.Address;
 import com.case_study.casemd3.model.Food;
+import com.case_study.casemd3.model.Merchant;
 import com.case_study.casemd3.service.address.AddressService;
 import com.case_study.casemd3.service.food.FoodService;
 
