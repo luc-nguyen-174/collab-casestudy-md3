@@ -54,7 +54,7 @@
         <tr>
             <th>Merchant</th>
             <td><input type="text" name="merchant_id" id="merchant_id" size="45"
-                       value="<c:out value='${food.merchant_id}'/>">
+                       value="<c:out value='${food.merchant.id}'/>">
             </td>
         </tr>
         <tr>
@@ -62,7 +62,7 @@
             <td>
 <%--                <input type="text" name="certificate" id="certificate" size="45">--%>
                 <select name="certificate">
-                    <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                    <c:forEach var="option" items="${{'True': 'true', 'False': 'false'}}">
                         <option value="${option.value}">${option.key}</option>
                     </c:forEach>
                 </select>
@@ -72,8 +72,8 @@
             <th>Active?</th>
             <td>
                 <%--                    <input type="text" name="is_active" id="merchant_id" size="45">--%>
-                <select name="certificate">
-                    <c:forEach var="option" items="${{'True': 1, 'False': 0}}">
+                <select name="is_active">
+                    <c:forEach var="option" items="${{'True': 'true', 'False': 'false'}}">
                         <option value="${option.value}">${option.key}</option>
                     </c:forEach>
                 </select>

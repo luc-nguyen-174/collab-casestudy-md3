@@ -40,7 +40,7 @@
             <td><c:out value="${food.detail}"/></td>
             <td>
 <%--                <c:out value="${food.img_link}"/>--%>
-                <img src="${food.img_link}" alt="food_image">
+                <img src="${food.img_link}" alt="food_image" width="50" height="50">
             </td>
             <td><c:out value="${food.merchant.name}"/></td>
             <td>
