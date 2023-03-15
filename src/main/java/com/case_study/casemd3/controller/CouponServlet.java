@@ -12,9 +12,11 @@ import java.util.List;
 @WebServlet(name = "CouponServlet", value = "/coupon")
 public class CouponServlet extends HttpServlet implements IFormServlet {
     private CouponService couponService;
-    public void init(){
+
+    public void init() {
         couponService = new CouponService();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -29,15 +31,20 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
                 showUpdateForm(request, response);
                 break;
             case "delete":
+                showDeleteForm(request, response);
                 break;
             case "search":
                 showSearchForm(request, response);
+                break;
+            case "view":
+                viewDetails(request, response);
                 break;
             default:
                 list(request, response);
                 break;
         }
     }
+
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/search.jsp");
         dispatcher.forward(request, response);
@@ -50,8 +57,12 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
     }
 
     @Override
-    public void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
-
+    public void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Coupon coupon = couponService.findById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/delete.jsp");
+        request.setAttribute("coupon", coupon);
+        dispatcher.forward(request, response);
     }
 
     public void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,14 +74,18 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
     }
 
     @Override
-    public void viewDetails(HttpServletRequest request, HttpServletResponse response) {
-
+    public void viewDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Coupon coupon = couponService.findById(id);
+        request.setAttribute("coupon", coupon);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/view.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Coupon> coupons = couponService.findAll();
-        request.setAttribute("listCoupon", coupons);
+        request.setAttribute("coupons", coupons);
         RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/list.jsp");
         dispatcher.forward(request, response);
     }
@@ -80,8 +95,8 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double value = Double.parseDouble(request.getParameter("value"));
-        boolean is_active =  Boolean.parseBoolean(request.getParameter("is_active"));
-        Coupon coupon1 = new Coupon(id, name,  value, is_active);
+        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+        Coupon coupon1 = new Coupon(id, name, value, is_active);
         couponService.save(coupon1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/create.jsp");
         dispatcher.forward(request, response);
@@ -93,16 +108,26 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
         String name = request.getParameter("name");
         double value = Double.parseDouble(request.getParameter("value"));
         boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
-        Coupon coupon1 = new Coupon(id,name, value, is_active);
+        Coupon coupon1 = new Coupon(id, name, value, is_active);
         couponService.update(id, coupon1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/edit.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
-    public void delete(HttpServletRequest request, HttpServletResponse response) {
-
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        try {
+            couponService.remove(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<Coupon> coupons = couponService.findAll();
+        request.setAttribute("coupons", coupons);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/delete.jsp");
+        dispatcher.forward(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -111,10 +136,13 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
         }
         switch (action) {
             case "create":
-                create(request,response);
+                create(request, response);
                 break;
             case "edit":
                 edit(request, response);
+                break;
+            case "delete":
+                delete(request, response);
                 break;
             case "search":
                 searchCouponByName(request, response);

@@ -10,5 +10,6 @@
 </h1>
 <br/>
 <a href="food">Hello Servlet</a>
+<a href="/coupon">Chao xin cac con vo de thuong</a>
 </body>
 </html>
