@@ -9,7 +9,6 @@
     <c:if test='${"message" != null}'>
 <h2 class="message">${message}</h2>
 </c:if>
-
 </p>
 <div>
     <form method="post">
@@ -66,7 +65,6 @@
             <tr>
                 <th>Active?</th>
                 <td>
-                    <%--                    <input type="text" name="is_active" id="merchant_id" size="45">--%>
                     <select name="is_active">
                         <c:forEach var="option" items="${{'True': 'true', 'False': 'false'}}">
                             <option value="${option.value}">${option.key}</option>

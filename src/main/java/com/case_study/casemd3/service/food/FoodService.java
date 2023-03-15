@@ -54,9 +54,23 @@ public class FoodService implements IFood {
             "       F.certificate  food_certi,\n" +
             "       F.is_active   food_active,\n" +
             "       M.name        merchant_name\n" +
-            "from food F\n" +
+            "from food F" +
             "         join merchant M on M.id = F.merchant_id\n" +
             "where F.id = ?;";
+    public static final String SELECT_FOOD_BY_NAME = "" +
+            "SELECT F.id          food_id,\n" +
+            "       F.name        food_name,\n" +
+            "       F.price       food_price,\n" +
+            "       F.detail      food_detail,\n" +
+            "       F.img_link    food_img,\n" +
+            "       F.merchant_id food_merchant,\n" +
+            "       F.certificate  food_certi,\n" +
+            "       F.is_active   food_active,\n" +
+            "       M.name        merchant_name\n" +
+            "from food F\n" +
+            "         join merchant M on M.id = F.merchant_id\n" +
+            "where F.name LIKE ?; ";
+
 
     @Override
     public List<Food> findAll() {
@@ -217,7 +231,7 @@ public class FoodService implements IFood {
             statement.setInt(5, food.getMerchant_id());
             statement.setBoolean(6, food.isCertificate());
             statement.setBoolean(7, food.isIs_active());
-            statement.setInt(8,id);
+            statement.setInt(8, id);
             rowUpdated = statement.executeUpdate() > 0;
             connection.commit();
         } catch (SQLException e) {
@@ -266,5 +280,48 @@ public class FoodService implements IFood {
             }
         }
         return rowDisable;
+    }
+
+    @Override
+    public List<Food> searchFood(String food_name) {
+        List<Food> foods = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            conn.setAutoCommit(false);
+            statement = conn.prepareStatement(SELECT_FOOD_BY_NAME);
+            String a= "%" + food_name + "%";
+            statement.setString(1, a);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("food_id");
+                String name = rs.getString("food_name");
+                double price = rs.getDouble("food_price");
+                String details = rs.getString("food_detail");
+                String img = rs.getString("food_img");
+                int merchant_id = rs.getInt("food_merchant");
+                Merchant merchant = merchantService.findById(merchant_id);
+                boolean certificate = rs.getBoolean("food_certi");
+                boolean is_active = rs.getBoolean("food_active");
+                foods.add(new Food(id, name, price, details, img, merchant, certificate, is_active));
+            }
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (statement != null) statement.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return foods;
     }
 }
