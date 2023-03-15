@@ -157,9 +157,10 @@ public class MerchantServlet extends HttpServlet implements IFormServlet{
         int address_id = Integer.parseInt(request.getParameter("address_id"));
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
-        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+        String active = request.getParameter("is_active");
+        boolean is_active = Boolean.parseBoolean(active);
         Merchant merchant = new Merchant(id, name, age, id_number, address_id, phone, email, is_active);
-        merchantService.save(merchant);
+        merchantService.update(id, merchant);
         RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/edit.jsp");
         request.setAttribute("message", "Merchant information was updated");
         try {
