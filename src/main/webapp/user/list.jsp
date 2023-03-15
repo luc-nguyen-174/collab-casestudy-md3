@@ -14,8 +14,8 @@
 <body>
 
 <center><h1>List user</h1>
-    <h2><a href="/user?action=create">Create new coupon</a></h2>
-    <h2><a href="/user?action=search"></a></h2>
+    <h2><a href="/user?action=create">Create new user</a></h2>
+    <h2><a href="/user?action=search">Search user</a></h2>
 </center>
 <table border="1">
 <tr>
@@ -27,6 +27,7 @@
     <td>PHONE</td>
     <td>ADDRESS</td>
     <td>STATUS</td>
+    <td>ACTION</td>
 </tr>
 <c:forEach var="user" items="${requestScope.listUser}">
     <tr>
@@ -39,9 +40,8 @@
         <td><c:out value="${user.address.address_name}"/></td>
         <td><c:out value="${user.is_active}"/></td>
         <td>
-            <a href="/coupon?action=view&id=${coupon.id}">VIEW</a>
-            <a href="/coupon?action=edit&id=${coupon.id}">EDIT</a>
-            <a href="/coupon?action=delete&id=${coupon.id}">DISABLE</a>
+            <a href="/user?action=edit&id=${user.id}">EDIT</a>
+            <a href="/user?action=delete&id=${user.id}">DISABLE</a>
         </td>
     </tr>
 </c:forEach>

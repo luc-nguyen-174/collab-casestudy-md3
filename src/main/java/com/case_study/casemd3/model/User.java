@@ -9,7 +9,7 @@ public class User {
     private String phone;
     private int address_id;
     private Address address;
-    private  boolean is_active;
+    private  boolean is_active = true;
 
     public User() {
     }
