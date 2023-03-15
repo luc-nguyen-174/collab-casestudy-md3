@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: vipqk
@@ -12,5 +13,38 @@
 </head>
 <body>
 
+<center><h1>List user</h1>
+    <h2><a href="/user?action=create">Create new coupon</a></h2>
+    <h2><a href="/user?action=search"></a></h2>
+</center>
+<table border="1">
+<tr>
+    <td>ID</td>
+    <td>USERNAME</td>
+    <td>PASSWORD</td>
+    <td>NAME</td>
+    <td>EMAIL</td>
+    <td>PHONE</td>
+    <td>ADDRESS</td>
+    <td>STATUS</td>
+</tr>
+<c:forEach var="user" items="${requestScope.listUser}">
+    <tr>
+        <td><c:out value="${user.id}"/></td>
+        <td><c:out value="${user.username}"/></td>
+        <td><c:out value="${user.password}"/></td>
+        <td><c:out value="${user.name}"/></td>
+        <td><c:out value="${user.email}"/></td>
+        <td><c:out value="${user.phone}"/></td>
+        <td><c:out value="${user.address.address_name}"/></td>
+        <td><c:out value="${user.is_active}"/></td>
+        <td>
+            <a href="/coupon?action=view&id=${coupon.id}">VIEW</a>
+            <a href="/coupon?action=edit&id=${coupon.id}">EDIT</a>
+            <a href="/coupon?action=delete&id=${coupon.id}">DISABLE</a>
+        </td>
+    </tr>
+</c:forEach>
+</table>
 </body>
 </html>

@@ -4,9 +4,27 @@ public class Coupon {
     private int id;
     private String name;
     private double value;
+    private int merchant_id;
+    Merchant merchant;
     private boolean is_active;
 
     public Coupon() {
+    }
+
+    public Coupon(int id, String name, double value, Merchant merchant, boolean is_active) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+        this.merchant = merchant;
+        this.is_active = is_active;
+    }
+
+    public Coupon(int id, String name, double value, int merchant_id, boolean is_active) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+        this.merchant_id = merchant_id;
+        this.is_active = is_active;
     }
 
     public Coupon(int id, String name, double value, boolean is_active) {
@@ -46,5 +64,21 @@ public class Coupon {
 
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;
+    }
+
+    public int getMerchant_id() {
+        return merchant_id;
+    }
+
+    public void setMerchant_id(int merchant_id) {
+        this.merchant_id = merchant_id;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }
