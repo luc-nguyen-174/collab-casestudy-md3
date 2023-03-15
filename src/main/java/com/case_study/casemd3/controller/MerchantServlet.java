@@ -13,6 +13,12 @@ import java.util.List;
 @WebServlet(name = "MerchantServlet", value = "/merchants")
 public class MerchantServlet extends HttpServlet implements IFormServlet{
     private MerchantService merchantService;
+
+    @Override
+    public void init() throws ServletException {
+        merchantService = new MerchantService();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -97,13 +103,22 @@ public class MerchantServlet extends HttpServlet implements IFormServlet{
 
     @Override
     public void viewDetails(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Merchant merchant = merchantService.findById(id);
+        request.setAttribute("merchant", merchant);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/view.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     @Override
     public void list(HttpServletRequest request, HttpServletResponse response) {
         List<Merchant> merchants = merchantService.findAll();
-        request.setAttribute("listUser", merchants);
+        request.setAttribute("merchants", merchants);
         RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/list.jsp");
         try {
             dispatcher.forward(request, response);
@@ -114,23 +129,54 @@ public class MerchantServlet extends HttpServlet implements IFormServlet{
 
     @Override
     public void create(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         int age = Integer.parseInt(request.getParameter("age"));
         String id_number = request.getParameter("id_number");
         int address_id = Integer.parseInt(request.getParameter("address_id"));
-        String address = request.getParameter("address");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+        Merchant merchant = new Merchant(id, name, age, id_number, address_id, phone, email, is_active);
+        merchantService.save(merchant);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/create.jsp");
+        request.setAttribute("message", "New merchant was created");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void edit(HttpServletRequest request, HttpServletResponse response) {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        int age = Integer.parseInt(request.getParameter("age"));
+        String id_number = request.getParameter("id_number");
+        int address_id = Integer.parseInt(request.getParameter("address_id"));
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+        Merchant merchant = new Merchant(id, name, age, id_number, address_id, phone, email, is_active);
+        merchantService.save(merchant);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/edit.jsp");
+        request.setAttribute("message", "Merchant information was updated");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        merchantService.remove(id);
+        try {
+            response.sendRedirect("/merchants");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

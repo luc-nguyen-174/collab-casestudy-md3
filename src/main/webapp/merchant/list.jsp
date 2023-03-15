@@ -3,9 +3,20 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        table, th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        .fa-eye {
+
+        }
+    </style>
 </head>
 <body>
-<table style="border: 2px solid black;">
+<h2>List Merchant Information</h2>
+<table>
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -26,11 +37,16 @@
             <td><c:out value="${merchant.phone}"/></td>
             <td><c:out value="${merchant.email}"/></td>
             <td>
-                <a href="/merchants?action=edit&id=${merchant.id}">Edit</a>
-                <a href="/merchants?action=delete&id=${merchant.id}">Delete</a>
+                <a href="<c:url value="/merchants?action=view&id=${merchant.getId()}"/>">
+                    <i class="fa-solid fa-eye"></i></a>
+                <a href="/merchants?action=edit&id=${merchant.id}">
+                    <i class="fa-solid fa-pen-nib"></i></a>
+                <a href="/merchants?action=delete&id=${merchant.id}">
+                    <i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
+    </c:forEach>
 </table>
-</c:forEach>
+<script src="https://kit.fontawesome.com/13a7b8c203.js" crossorigin="anonymous"></script>
 </body>
 </html>
