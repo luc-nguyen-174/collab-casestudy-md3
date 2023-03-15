@@ -19,6 +19,8 @@ public class CartService implements ICart {
     FoodService foodService = new FoodService();
     CouponService couponService = new CouponService();
     UserService userService = new UserService();
+    public static final String UPDATE_CART_BY_ID = "UPDATE cart SET quantity = ?, food_id = ?, coupon_id = ?, user_id = ?,is_active = ? WHERE id = ?";
+    public static final String DISABLE_CART = "UPDATE cart SET cart.is_active = false WHERE id =?";
     public static final String SELECT_CART_BY_ID = "" +
             "select c.*,\n" +
             "       u.id           user_id,\n" +
@@ -34,14 +36,14 @@ public class CartService implements ICart {
             "       c2.id,\n" +
             "       c2.name        coupon_name,\n" +
             "       c2.value       coupon_value\n" +
-            "from cart c\n" +
+            "       from cart c\n" +
             "         left join coupon c2 on c2.id = c.coupon_id\n" +
             "         left join food f on f.id = c.food_id\n" +
             "         left join `user` u on u.id = c.user_id\n" +
             "         left join address a on u.address_id = a.id\n" +
             "         left join merchant m on f.merchant_id = m.id\n" +
-            "where c.id = ?\n" +
-            "  and c.is_active = true;; ";
+            "       where c.id = ? " +
+            "       and c.is_active = true;; ";
 
     public static final String SELECT_CART = "" +
             "       select c.*," +
@@ -151,7 +153,15 @@ public class CartService implements ICart {
             statement.setInt(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-
+                int quantity = rs.getInt("quantity");
+                int food_id = rs.getInt("food_id");
+                int coupon_id = rs.getInt("coupon_id");
+                int user_id = rs.getInt("user_id");
+                boolean is_active = rs.getBoolean("is_active");
+                Food food = foodService.findById(food_id);
+                Coupon coupon = couponService.findById(coupon_id);
+                User user = userService.findById(user_id);
+                cart = new Cart(id, quantity,food, coupon, user, is_active);
             }
             connection.commit();
         } catch (SQLException e) {
@@ -173,12 +183,66 @@ public class CartService implements ICart {
     }
 
     @Override
-    public boolean update(int id, Cart generic) {
-        return false;
+    public boolean update(int id, Cart cart) {
+        boolean rowUpdated = false;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(UPDATE_CART_BY_ID);
+            statement.setInt(1, cart.getQuantity());
+            statement.setInt(2,cart.getFood_id());
+            statement.setInt(3,cart.getCoupon_id());
+            statement.setInt(4,cart.getUser_id());
+            statement.setBoolean(5, cart.isIs_active());
+            statement.setInt(6, id);
+            rowUpdated = statement.executeUpdate() > 0;
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        } finally {
+            try {
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return rowUpdated;
     }
 
     @Override
     public boolean remove(int id) {
-        return false;
+        boolean rowDisable = false;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(DISABLE_CART);
+            statement.setInt(1, id);
+            rowDisable = statement.executeUpdate() > 0;
+            connection.commit();
+        } catch (SQLException e) {
+
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                e.printStackTrace();
+            }
+        } finally {
+            try {
+                if (connection != null) connection.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return rowDisable;
     }
 }

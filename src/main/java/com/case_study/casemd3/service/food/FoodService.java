@@ -17,11 +17,7 @@ public class FoodService implements IFood {
 
 
     MerchantService merchantService = new MerchantService();
-    //    public static final String SELECT_ALL_FROM_FOOD = "SELECT F.*,\n" +
-//            "       M.*\n" +
-//            "from food F\n" +
-//            "         join merchant M on M.id = F.merchant_id\n" +
-//            "where F.is_active = true;";
+
     public static final String SELECT_ALL_FROM_FOOD = "" +
             "SELECT F.id as food_id,\n" +
             "       F.name      as food_name,\n" +

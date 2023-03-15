@@ -13,7 +13,7 @@
 </head>
 <body>
 <center>
-    <h1>Employee Management</h1>
+    <h1>Food Management</h1>
     <h2>
         <a href="/food?action=create">Add New Employee</a>
     </h2>
