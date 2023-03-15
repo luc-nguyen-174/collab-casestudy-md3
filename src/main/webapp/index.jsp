@@ -9,7 +9,9 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
+
 <a href="food">Hello Servlet</a>
 <a href="merchants">Hello Servlet</a>
+
 </body>
 </html>

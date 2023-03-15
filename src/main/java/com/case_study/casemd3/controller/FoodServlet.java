@@ -141,6 +141,7 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
         String detail = request.getParameter("detail");
         String img_link = request.getParameter("img_link");
         int merchant = Integer.parseInt(request.getParameter("merchant_id"));
+
         boolean certificate = Boolean.parseBoolean(request.getParameter("certificate"));
         boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
 
@@ -168,8 +169,11 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
         String img_link = request.getParameter("img_link");
         int merchant = Integer.parseInt(request.getParameter("merchant_id"));
 
-        boolean certificate = Boolean.parseBoolean(request.getParameter("certificate"));
-        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+        String get_certificate = request.getParameter("certificate");
+        String get_isActive = request.getParameter("is_active");
+
+        boolean certificate = Boolean.parseBoolean(get_certificate);
+        boolean is_active = Boolean.parseBoolean(get_isActive);
 
         Food food = new Food(id, name, price, detail, img_link, merchant, certificate, is_active);
         foodService.update(id, food);
