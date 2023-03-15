@@ -129,7 +129,6 @@ public class UserServlet extends HttpServlet implements IFormServlet {
         request.setAttribute("listUser", users);
         dispatcher.forward(request, response);
     }
-
     @Override
     public void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));

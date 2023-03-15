@@ -12,5 +12,38 @@
 </head>
 <body>
 
+<center><h1>List user</h1>
+    <h2><a href="/user?action=create">Create new user</a></h2>
+    <h2><a href="/user?action=search">Search user</a></h2>
+</center>
+<table border="1">
+<tr>
+    <td>ID</td>
+    <td>USERNAME</td>
+    <td>PASSWORD</td>
+    <td>NAME</td>
+    <td>EMAIL</td>
+    <td>PHONE</td>
+    <td>ADDRESS</td>
+    <td>STATUS</td>
+    <td>ACTION</td>
+</tr>
+<c:forEach var="user" items="${requestScope.listUser}">
+    <tr>
+        <td><c:out value="${user.id}"/></td>
+        <td><c:out value="${user.username}"/></td>
+        <td><c:out value="${user.password}"/></td>
+        <td><c:out value="${user.name}"/></td>
+        <td><c:out value="${user.email}"/></td>
+        <td><c:out value="${user.phone}"/></td>
+        <td><c:out value="${user.address.address_name}"/></td>
+        <td><c:out value="${user.is_active}"/></td>
+        <td>
+            <a href="/user?action=edit&id=${user.id}">EDIT</a>
+            <a href="/user?action=delete&id=${user.id}">DISABLE</a>
+        </td>
+    </tr>
+</c:forEach>
+</table>
 </body>
 </html>
