@@ -16,6 +16,9 @@
 </head>
 <body>
 <h2>List Merchant Information</h2>
+<p>
+    <a href="<c:url value= 'merchants?action=create'/>">Create new merchant</a>
+</p>
 <table>
     <tr>
         <th>ID</th>
