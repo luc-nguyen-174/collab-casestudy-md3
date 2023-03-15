@@ -1,0 +1,15 @@
+body {
+    background-image: url("image/image-3.jpg");
+}
+
+.gradient-custom-3 {
+    background: #84fab0;
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
+
+.gradient-custom-4 {
+    background: #84fab0;
+    background: -webkit-linear-gradient(to right, #3eb889, #2dd07a, #29d745, #4fe924);
+    background: linear-gradient(to right, #3eb889, #1ab037, #29d745, #4fe924);
+}
