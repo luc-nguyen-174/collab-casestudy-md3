@@ -7,76 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<h2>
-    <a href="/food">List All Users</a>
-</h2>
-<div align="center">
-    <form method="post">
-        <table border="1" cellpadding="5">
-            <caption>
-                <h2>Food Information</h2>
-            </caption>
-            <tr>
-                <td>Food ID:</td>
-                <td>${food.id}</td>
-            </tr>
-            <tr>
-                <td>Food Name:</td>
-                <td>${food.name}</td>
-            </tr>
-            <tr>
-                <td>Food Price:</td>
-                <td>${food.price}</td>
-            </tr>
-            <tr>
-                <td>Food Details:</td>
-                <td>${food.detail}</td>
-            </tr>
-            <tr>
-                <td>Food Image:</td>
-                <td><img src="${food.img_link}" alt="food_image"></td>
-            </tr>
-            <tr>
-                <td>Merchant:</td>
-                <td>${food.merchant.name}</td>
-            </tr>
-            <tr>
-                <td>Certificate:</td>
-                <td>
-                    <c:choose>
-                        <c:when test="${food.certificate}">
-                            <p>Has Certificate<p>
-                        </c:when>
-                        <c:otherwise>
-                            <p>Do Not Has Certificate</p>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-            </tr>
-            <tr>
-                <td>Active:</td>
-                <td>
-                    <c:choose>
-                        <c:when test="${food.is_active}">
-                            <p>Food Available<p>
-                        </c:when>
-                        <c:otherwise>
-                            <p>Do Not Available</p>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-            </tr>
-
-        </table>
-    </form>
-</div>
-</body>
-
 </html>
 <!DOCTYPE html>
 <html lang="en">
@@ -262,17 +192,6 @@
 <div class="container-xl">
     <div class="table-responsive">
         <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <h2>User <b>Management</b></h2>
-                    </div>
-                    <div class="col-sm-7">
-                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
-                    </div>
-                </div>
-            </div>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
@@ -288,10 +207,11 @@
                 <tbody>
                 <tr>
                     <td>${food.id}</td>
-                    <td><a href="#"><img src="${food.img_link}" class="avatar" alt="Avatar"> ${food.name}</a></td>
+                    <td><a href="#"><img src="${food.img_link}" class="avatar" alt="Avatar">${food.name}</a></td>
+                    <td>${food.price}</td>
                     <td>${food.detail}</td>
                     <td>${food.merchant.name}</td>
-                    <td><span class="status text-success">&bull;</span> <td>Active:</td>
+                    <td><span class="status text-success"></span>
                         <c:choose>
                             <c:when test="${food.is_active}">
                                 <p>Food Available<p>
@@ -300,7 +220,7 @@
                                 <p>Do Not Available</p>
                             </c:otherwise>
                         </c:choose></td>
-                    <td><span class="status text-success">&bull;</span><c:choose>
+                    <td><span class="status text-success"></span><c:choose>
                     <c:when test="${food.certificate}">
                         <p>Has Certificate<p>
                     </c:when>
@@ -308,69 +228,9 @@
                         <p>Do Not Has Certificate</p>
                     </c:otherwise>
                 </c:choose></td>
-                    <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="#"><img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> Paula Wilson</a></td>
-                    <td>05/08/2014</td>
-                    <td>Publisher</td>
-                    <td><span class="status text-success">&bull;</span> Active</td>
-                    <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="#"><img src="/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno</a></td>
-                    <td>11/05/2015</td>
-                    <td>Publisher</td>
-                    <td><span class="status text-danger">&bull;</span> Suspended</td>
-                    <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><a href="#"><img src="/examples/images/avatar/4.jpg" class="avatar" alt="Avatar"> Mary Saveley</a></td>
-                    <td>06/09/2016</td>
-                    <td>Reviewer</td>
-                    <td><span class="status text-success">&bull;</span> Active</td>
-                    <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td><a href="#"><img src="/examples/images/avatar/5.jpg" class="avatar" alt="Avatar"> Martin Sommer</a></td>
-                    <td>12/08/2017</td>
-                    <td>Moderator</td>
-                    <td><span class="status text-warning">&bull;</span> Inactive</td>
-                    <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                    </td>
                 </tr>
                 </tbody>
             </table>
-            <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
