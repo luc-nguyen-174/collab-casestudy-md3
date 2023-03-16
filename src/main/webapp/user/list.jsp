@@ -29,7 +29,6 @@
 </tr>
 <c:forEach var="user" items="${requestScope.users}">
     <tr>
-
         <td><c:out value="${user.id}"/></td>
         <td><c:out value="${user.name}"/></td>
         <td><c:out value="${user.email}"/></td>

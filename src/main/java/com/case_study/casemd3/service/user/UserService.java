@@ -145,7 +145,6 @@ public class UserService implements IUser {
 
                 int address_id = Integer.parseInt(rs.getString("ur.address_id"));
                 Address address = addressService.findById(address_id);
-
                 boolean is_active = rs.getBoolean("ur.is_active");
                 user = new User(id, username, password, email, name, phone, address, is_active);
 
