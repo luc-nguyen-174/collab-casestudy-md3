@@ -19,13 +19,13 @@ public class UserService implements IUser {
             "from user ur join address ad on ur.address_id = ad.id where ur.is_active = true";
     private static final String INSERT = "insert into user(id, username, password, email, name, phone, address_id,is_active) " +
             "values(?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SELECT_USER_BY_ID = "select ur.username, ur.password, ur.email, ur.name, ur.phone,ur.is_active," +
-            " ad.address_name from user ur join address ad on ur.address_id=ad.id where ur.id=?" ;
-    private static final String UPDATE_USER_BY_ID = "update user set username = ?, password = ?, email = ?, name = ?, phone = ?," +
+    private static final String SELECT_USER_BY_ID = "select ur.username, ur.password, ur.email, ur.name, ur.phone,ur.is_active,ur.address_id," +
+            "ad.id, ad.address_name from user ur join address ad on ur.address_id= ad.id where ur.id=?" ;
+    private static final String UPDATE_USER_BY_ID = "update user set username = ?, password = ?, name = ?,email=?, phone = ?," +
             " address_id=?, is_active = ? where id = ? ";
     private static final String DISABLE_USER_BY_ID = "UPDATE user set is_active = false where id = ?";
     private static final String SEARCH_USER_BY_NAME = "select ur.id, ur.username, ur.password, ur.email, ur.name, " +
-            "ur.phone, ur.address_id, ur.is_active, a.address_name from user ur join address a on ur.address_id = a.id where name = ?";
+            "ur.phone, ur.address_id, ur.is_active, a.address_name, a.id from user ur join address a on ur.address_id = a.id where ur.name = ?";
 
     @Override
     public List<User> findAll() {
@@ -117,16 +117,16 @@ public class UserService implements IUser {
             statement.setInt(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                String email = rs.getString("email");
-                String name = rs.getString("name");
-                String phone = rs.getString("phone");
+                String username = rs.getString("ur.username");
+                String password = rs.getString("ur.password");
+                String email = rs.getString("ur.email");
+                String name = rs.getString("ur.name");
+                String phone = rs.getString("ur.phone");
 
-                int address_id = Integer.parseInt(rs.getString("address_id"));
+                int address_id = Integer.parseInt(rs.getString("ur.address_id"));
                 Address address = addressService.findById(address_id);
 
-                boolean is_active = rs.getBoolean("is_active");
+                boolean is_active = rs.getBoolean("ur.is_active");
                 user = new User(id, username, password, email, name, phone, address, is_active);
             }
             connection.commit();
@@ -158,14 +158,14 @@ public class UserService implements IUser {
             connection = getConnection();
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(UPDATE_USER_BY_ID);
-            statement.setInt(1, user.getId());
-            statement.setString(2, user.getUsername());
-            statement.setString(3, user.getPassword());
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getName());
             statement.setString(4, user.getEmail());
-            statement.setString(5, user.getName());
-            statement.setString(6, user.getPhone());
-            statement.setInt(7, user.getAddress_id());
-            statement.setBoolean(8, user.isIs_active());
+            statement.setString(5, user.getPhone());
+            statement.setInt(6, user.getAddress_id());
+            statement.setBoolean(7, user.isIs_active());
+            statement.setInt(8, id);
             rowUpdate = statement.executeUpdate() > 0;
             connection.commit();
         } catch (SQLException e) {
@@ -234,7 +234,7 @@ public class UserService implements IUser {
                 int address_id = Integer.parseInt(rs.getString("ur.address_id"));
                 Address address = addressService.findById(address_id);
                 boolean is_active = rs.getBoolean("ur.is_active");
-                users.add(new User(id, username, password, email, name, phone, address_id, is_active));
+                users.add(new User(id, username, password, email, name, phone, address, is_active));
                 connection.commit();
             }
 
