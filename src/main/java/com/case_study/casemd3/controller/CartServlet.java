@@ -66,9 +66,16 @@ public class CartServlet extends HttpServlet implements IFormServlet {
             case "delete":
                 delete(request, response);
                 break;
+            case "cartload":
+                cartLoad(request,response);
+                break;
             default:
                 break;
         }
+    }
+
+    private void cartLoad(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     //-------------------------------------------------Method Get-----------------------------------------------------
