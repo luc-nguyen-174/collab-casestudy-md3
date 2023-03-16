@@ -1,11 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<meta http-equiv="Content-Type" content="text/html";charset="utf-8">
-<meta charset="UTF-8">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
     <title>Restoran - Bootstrap Restaurant Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -60,7 +58,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0 pe-4">
-                    <a href="../index.html" class="nav-item nav-link active">Home</a>
+                    <a href="../indexx.html" class="nav-item nav-link active">Home</a>
                     <a href="../about.html" class="nav-item nav-link">About</a>
                     <a href="../service.html" class="nav-item nav-link">Service</a>
                     <a href="../menu.html" class="nav-item nav-link">Menu</a>
