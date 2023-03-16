@@ -14,39 +14,6 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String email, String name, String phone, int address_id, Address address) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.name = name;
-        this.phone = phone;
-        this.address_id = address_id;
-        this.address = address;
-    }
-
-    public User(String username, String password, String email, String name, String phone, int address_id, Address address, boolean is_active) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.name = name;
-        this.phone = phone;
-        this.address_id = address_id;
-        this.address = address;
-        this.is_active = is_active;
-    }
-
-    public User(int id, String username, String password, String email, String name, String phone, Address address, boolean is_active) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.is_active = is_active;
-    }
-
     public User(int id, String username, String password, String email, String name, String phone, int address_id, boolean is_active) {
         this.id = id;
         this.username = username;
@@ -58,7 +25,7 @@ public class User {
         this.is_active = is_active;
     }
 
-    public User(int id, String username, String password, String email, String name, String phone, Address address,Order order, boolean is_active) {
+    public User(int id, String username, String password, String email, String name, String phone, Address address, boolean is_active) {
         this.id = id;
         this.username = username;
         this.password = password;

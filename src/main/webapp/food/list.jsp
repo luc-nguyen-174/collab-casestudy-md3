@@ -37,6 +37,7 @@
 </head>
 
 <body>
+
 <div class="container-xxl bg-white p-0">
     <!-- Spinner Start -->
     <div id="spinner"
@@ -46,7 +47,6 @@
         </div>
     </div>
     <!-- Spinner End -->
-
 
     <!-- Navbar & Hero Start -->
     <div class="container-xxl position-relative p-0">

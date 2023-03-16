@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: vipqk
-  Date: 14/03/2023
-  Time: 01:07
+  Date: 15/03/2023
+  Time: 22:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -23,31 +23,34 @@
             <h2>
                 Disable
             </h2>
-            <h3>Food Information</h3>
+            <h3>Cart Information</h3>
         </caption>
         <tr>
-            <td>Food Id:</td>
-            <td><c:out value="${food.id}"/></td>
+            <td>Cart Id:</td>
+            <td><c:out value="${cart.id}"/></td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td><c:out value="${cart.quantity}"/></td>
         </tr>
         <tr>
             <td>Food Name:</td>
-            <td><c:out value="${food.name}"/></td>
+            <td><c:out value="${cart.food.name}"/></td>
         </tr>
         <tr>
-            <td>Food Price:</td>
-            <td><c:out value="${food.price}"/></td>
+            <td>Coupon:</td>
+            <td><c:out value="${cart.coupon.name}"/></td>
         </tr>
         <tr>
-            <td>Food Image:</td>
-            <td><c:out value="${food.img_link}"/></td>
+            <td>User Id:</td>
+            <td><c:out value="${cart.user.name}"/></td>
         </tr>
-
     </table>
     <table>
         <h3>Are you sure?</h3>
         <tr>
             <td><input type="submit" value="Delete employee"></td>
-            <td><a href="<c:url value="/food"/>">Back to list</a></td>
+            <td><a href="<c:url value="/cart"/>">Back to list</a></td>
         </tr>
     </table>
 </form>

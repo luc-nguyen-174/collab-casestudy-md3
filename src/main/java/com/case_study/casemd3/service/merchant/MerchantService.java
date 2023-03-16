@@ -90,9 +90,14 @@ public class MerchantService implements IMerchant {
             pre.setString(6, merchant.getPhone());
             pre.setString(7, merchant.getEmail());
             pre.setBoolean(8, merchant.isIs_active());
+            pre.executeUpdate();
             con.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                con.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             try {
                 if (pre != null) pre.close();

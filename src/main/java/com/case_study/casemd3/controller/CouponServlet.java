@@ -85,8 +85,8 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
     @Override
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Coupon> coupons = couponService.findAll();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/list.jsp");
         request.setAttribute("coupons", coupons);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/list.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -95,9 +95,8 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double value = Double.parseDouble(request.getParameter("value"));
-        int merchant_id = Integer.parseInt(request.getParameter("merchant_id"));
         boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
-        Coupon coupon1 = new Coupon(id, name, value,merchant_id, is_active);
+        Coupon coupon1 = new Coupon(id, name, value, is_active);
         couponService.save(coupon1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/create.jsp");
         dispatcher.forward(request, response);
@@ -108,10 +107,8 @@ public class CouponServlet extends HttpServlet implements IFormServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double value = Double.parseDouble(request.getParameter("value"));
-        int merchant_id = Integer.parseInt(request.getParameter("merchant_id"));
-        String get_is_active = request.getParameter("is_active");
-        boolean is_active = Boolean.parseBoolean(get_is_active);
-        Coupon coupon1 = new Coupon(id, name, value,merchant_id, is_active);
+        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+        Coupon coupon1 = new Coupon(id, name, value, is_active);
         couponService.update(id, coupon1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("coupon/edit.jsp");
         dispatcher.forward(request, response);
