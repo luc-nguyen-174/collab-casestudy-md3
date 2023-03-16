@@ -68,8 +68,8 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="food">Hello Servlet</a>
-<a href="merchants">Hello Servlet</a>
+<a href="food">Food</a>
+<a href="merchants">Merc</a>
 <a href="/coupon">Chao xin cac con vo de thuong</a>
 <a href="/user">Chao xin cac con vo de thuong</a>
 </body>

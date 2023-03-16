@@ -90,6 +90,7 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("food/search.jsp");
+
         dispatcher.forward(request,response);
     }
 
@@ -151,6 +152,7 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
         List<Food> foods = foodService.findAll();
         request.setAttribute("foods", foods);
         RequestDispatcher dispatcher = request.getRequestDispatcher("food/list.jsp");
+        RequestDispatcher dispatcher1 = request.getRequestDispatcher("menu.html");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

@@ -21,6 +21,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/efeb346dcb.js" crossorigin="anonymous"></script>
     <style>
         body {
             color: #566787;
@@ -181,6 +182,22 @@
             margin-top: 10px;
             font-size: 13px;
         }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type=number] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
     </style>
     <script>
         $(document).ready(function(){
@@ -197,6 +214,7 @@
                 <tr>
                     <th>FOOD ID</th>
                     <th>FOOD NAME</th>
+                    <th>QUANTITY</th>
                     <th>PRICE</th>
                     <th>DETAIL</th>
                     <th>MERCHANT NAME</th>
@@ -208,6 +226,13 @@
                 <tr>
                     <td>${food.id}</td>
                     <td><a href="#"><img src="${food.img_link}" class="avatar" alt="Avatar">${food.name}</a></td>
+                    <td>
+                        <input type="number" id="myNumber" value="0" size="10">
+                        <button id="increaseButton"><i class="fa-solid fa-circle-plus"></i></button>
+                        <button id="decreaseButton"><i class="fa-solid fa-circle-minus"></i></button>
+
+
+                    </td>
                     <td>${food.price}</td>
                     <td>${food.detail}</td>
                     <td>${food.merchant.name}</td>
@@ -234,5 +259,22 @@
         </div>
     </div>
 </div>
+<script>
+    var myNumber = document.getElementById("myNumber");
+    var increaseButton = document.getElementById("increaseButton");
+    var decreaseButton = document.getElementById("decreaseButton");
+
+    increaseButton.addEventListener("click", function() {
+        myNumber.value++;
+    });
+
+    decreaseButton.addEventListener("click", function() {
+        if (myNumber.value > 0) {
+            myNumber.value--;
+        }
+    });
+
+
+</script>
 </body>
 </html>
