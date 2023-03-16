@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href='http://fonts.googleapis.com/css?family=Arial' rel='stylesheet' type='text/css'/>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="utf-8">
@@ -141,16 +143,17 @@
                             <c:forEach items="${foods}" var="food">
                                 <div class="col-lg-6">
                                     <div class="d-flex align-items-center">
-
+                                        <a href="/food?action=view&id=${food.id}">
                                             <img class="flex-shrink-0 img-fluid rounded" src="${food.img_link}" alt="img"
                                                  style="width: 80px;">
-
+                                        </a>
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                 <span>${food.name}</span>
                                                 <span class="text-primary">${food.price}</span>
                                             </h5>
                                             <small class="fst-italic">${food.detail}</small>
+                                            <big>${food.merchant.name}</big>
                                         </div>
 
                                     </div>
@@ -396,9 +399,9 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>22-TT01 MONCITY</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>0162 ngày mai nói tiếp</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>A Luc va nhung nguoi ban @example.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
