@@ -19,14 +19,6 @@
             <input type="hidden" name="id" value="<c:out value="${user.id}"/>"/>
         </c:if>
         <tr>
-            <th>USERNAME</th>
-            <td><input type="text" name="username" id="username" value="<c:out value="${user.username}"/>"/></td>
-        </tr>
-        <tr>
-            <th>PASSWORD</th>
-            <td><input type="text" name="password" id="password" value="<c:out value="${user.password}"/>"/></td>
-        </tr>
-        <tr>
             <th>NAME</th>
             <td><input type="text" name="name" id="name" value="<c:out value="${user.name}"/>"/></td>
         </tr>

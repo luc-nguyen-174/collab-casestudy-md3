@@ -15,14 +15,6 @@
             </td>
         </tr>
         <tr>
-            <th> Username</th>
-            <td><input type="text" name="username" id="username" size="45"></td>
-        </tr>
-        <tr>
-            <th> Password</th>
-            <td><input type="text" name="password" id="password" size="45"></td>
-        </tr>
-        <tr>
             <th> Name</th>
             <td><input type="text" name="name" id="name" size="45"></td>
         </tr>

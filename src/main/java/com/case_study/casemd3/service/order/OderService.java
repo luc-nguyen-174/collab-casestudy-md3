@@ -1,26 +1,28 @@
 package com.case_study.casemd3.service.order;
 
+import com.case_study.casemd3.model.Order;
+
 import java.util.List;
 
 public class OderService implements IOrder{
-    OderService oderService = new OderService();
+
     @Override
-    public List findAll() {
+    public List<Order> findAll() {
         return null;
     }
 
     @Override
-    public void save(Object generic) {
+    public void save(Order generic) {
 
     }
 
     @Override
-    public Object findById(int id) {
+    public Order findById(int id) {
         return null;
     }
 
     @Override
-    public boolean update(int id, Object generic) {
+    public boolean update(int id, Order generic) {
         return false;
     }
 

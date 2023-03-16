@@ -15,8 +15,18 @@ import static com.case_study.casemd3.connect.ConnectDB.getConnection;
 
 public class UserService implements IUser {
     AddressService addressService = new AddressService();
-    private static final String SELECT_ALL_USERS = "select ad.address_name, ur.id, ur.name, ur.email, ur.phone " +
-            "from user ur join address ad on ur.address_id = ad.id where is_active = true";
+    private static final String SELECT_ALL_USERS = "select u.id,\n" +
+            "       username,\n" +
+            "       password,\n" +
+            "       email,\n" +
+            "       name,\n" +
+            "       phone,\n" +
+            "       address_id,\n" +
+            "       is_active,\n" +
+            "       a.address_name\n" +
+            "from user u\n" +
+            "         join address a on u.address_id = a.id\n" +
+            "where u.is_active = true;";
     private static final String INSERT = "insert into user(id, username, password, email, name, phone, address_id,is_active) " +
             "values(?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -49,7 +59,7 @@ public class UserService implements IUser {
                 String phone = rs.getString("phone");
                 int address_id = rs.getInt("address_id");
                 Address address = addressService.findById(address_id);
-                boolean is_active = rs.getBoolean("is_active");
+                boolean is_active = rs.getBoolean("u.is_active");
                 users.add(new User(id, username, password, email, name, phone, address, is_active));
             }
             connection.commit();
