@@ -28,7 +28,7 @@
     <td>STATUS</td>
     <td>ACTION</td>
 </tr>
-<c:forEach var="user" items="${requestScope.listUser}">
+<c:forEach var="user" items="${requestScope.users}">
     <tr>
         <td><c:out value="${user.id}"/></td>
         <td><c:out value="${user.username}"/></td>

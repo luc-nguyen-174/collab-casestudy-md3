@@ -37,8 +37,9 @@
                 <th>IS_ACTIVE</th>
                 <td>
                     <select name="is_active">
-                        <option name="is_active" value="1">True</option>
-                        <option name="is_active" value="0">False</option>
+                        <c:forEach var="option" items="${{'True': 'true', 'False': 'false'}}">
+                            <option value="${option.value}">${option.key}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>

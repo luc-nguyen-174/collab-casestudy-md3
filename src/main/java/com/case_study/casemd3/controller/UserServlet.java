@@ -84,7 +84,7 @@ public class UserServlet extends HttpServlet implements IFormServlet {
     private void searchUserByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         List<User> users = userService.findUserByName(name);
-        request.setAttribute("listUser", users);
+        request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/search.jsp");
         dispatcher.forward(request, response);
     }
@@ -126,7 +126,7 @@ public class UserServlet extends HttpServlet implements IFormServlet {
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = userService.findAll();
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
-        request.setAttribute("listUser", users);
+        request.setAttribute("users", users);
         dispatcher.forward(request, response);
     }
     @Override
@@ -154,8 +154,11 @@ public class UserServlet extends HttpServlet implements IFormServlet {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         int address_id = Integer.parseInt(request.getParameter("address_id"));
-        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
-        User user = new User(id, username, password, email, name, phone, address_id, is_active);
+
+        String get_Is_active = request.getParameter("is_active");
+        boolean is_active = Boolean.parseBoolean(get_Is_active);
+
+        User user = new User(id, username, password, name, email, phone, address_id, is_active);
         userService.update(id, user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         dispatcher.forward(request, response);
@@ -166,7 +169,7 @@ public class UserServlet extends HttpServlet implements IFormServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         userService.remove(id);
         List<User> users = userService.findAll();
-        request.setAttribute("user", users);
+        request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/delete.jsp");
         dispatcher.forward(request, response);
     }
