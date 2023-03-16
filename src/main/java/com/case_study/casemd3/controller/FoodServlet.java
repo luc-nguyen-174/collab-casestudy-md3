@@ -2,6 +2,7 @@ package com.case_study.casemd3.controller;
 
 import com.case_study.casemd3.model.Address;
 import com.case_study.casemd3.model.Food;
+import com.case_study.casemd3.model.Merchant;
 import com.case_study.casemd3.service.address.AddressService;
 import com.case_study.casemd3.service.food.FoodService;
 
@@ -40,11 +41,15 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
             case "view":
                 viewDetails(request, response);
                 break;
+            case "search":
+                showSearchForm(request, response);
+                break;
             default:
                 list(request, response);
                 break;
         }
     }
+
 
     //-------------------------------Method Post---------------------------------
     @Override
@@ -63,16 +68,36 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
             case "delete":
                 delete(request, response);
                 break;
+            case "search":
+                search(request,response);
+                break;
             default:
                 break;
         }
+    }
+
+    private void search(HttpServletRequest request, HttpServletResponse response) {
+        String food_name = request.getParameter("food_name");
+        List<Food> foods = foodService.searchFood(food_name);
+        request.setAttribute("foods", foods);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("food/search.jsp");
+        try {
+            dispatcher.forward(request,response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("food/search.jsp");
+        dispatcher.forward(request,response);
     }
 
     @Override
     public void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("food/create.jsp");
         List<Food> foods = foodService.findAll();
-        request.setAttribute("foods",foods);
+        request.setAttribute("foods", foods);
 
         try {
             dispatcher.forward(request, response);

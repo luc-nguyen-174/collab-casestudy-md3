@@ -30,6 +30,7 @@
         <th>Email</th>
         <th>Actions</th>
     </tr>
+    <%--@elvariable id="merchants" type="java.util.List"--%>
     <c:forEach var="merchant" items="${merchants}">
         <tr>
             <td><c:out value="${merchant.id}"/></td>

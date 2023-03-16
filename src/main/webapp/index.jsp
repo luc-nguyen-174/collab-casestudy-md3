@@ -65,5 +65,12 @@
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js">
 </script>
+<h1><%= "Hello World!" %>
+</h1>
+<br/>
+<a href="food">Hello Servlet</a>
+<a href="merchants">Hello Servlet</a>
+<a href="/coupon">Chao xin cac con vo de thuong</a>
+<a href="/user">Chao xin cac con vo de thuong</a>
 </body>
 </html>
