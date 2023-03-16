@@ -315,9 +315,9 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item text-center rounded overflow-hidden">
                         <div class="rounded-circle overflow-hidden m-4">
-                            <img class="img-fluid" src="../img/team-3.jpg" alt="">
+                            <img class="img-fluid" src="../img/nam2.jpg" alt="">
                         </div>
-                        <h5 class="mb-0">Triệu Quân Sự</h5>
+                        <h5 class="mb-0">Anh Nam hỏng xe</h5>
                         <small>Designation</small>
                         <div class="d-flex justify-content-center mt-3">
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -329,9 +329,9 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item text-center rounded overflow-hidden">
                         <div class="rounded-circle overflow-hidden m-4">
-                            <img class="img-fluid" src="../img/trieu.jpg" alt="">
+                            <img class="img-fluid" src="../img/luc.jpg" alt="">
                         </div>
-                        <h5 class="mb-0">Full Name</h5>
+                        <h5 class="mb-0">Nguyễn Tiến Lực</h5>
                         <small>Designation</small>
                         <div class="d-flex justify-content-center mt-3">
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -358,7 +358,7 @@
                     <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                     <p>Trải nghiệm app quá toẹt vời</p>
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/testimonial-1.jpg"
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/luc.jpg"
                              style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Nguyễn Tiến Lực</h5>
@@ -370,10 +370,10 @@
                     <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                     <p>Như trên</p>
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/testimonial-2.jpg"
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/trieu1.jpg"
                              style="width: 50px; height: 50px;">
                         <div class="ps-3">
-                            <h5 class="mb-1">Nguyễn Quang Huy</h5>
+                            <h5 class="mb-1">Triệu Quân Sự</h5>
                             <small>2k1 - gầm cao máy thoáng</small>
                         </div>
                     </div>
@@ -382,7 +382,7 @@
                     <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                     <p>Trải nghiệm như 2 thg trên</p>
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/testimonial-3.jpg"
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/doan.jpg"
                              style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Đoàn C hó Đ iên</h5>
