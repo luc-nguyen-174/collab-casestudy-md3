@@ -15,7 +15,7 @@
 <center>
     <h1>Cart Management</h1>
     <h2>
-        <a href="/cart?action=create">Add New Employee</a>
+        <a href="/cart?action=create">Add New Cart</a>
     </h2>
 </center>
 <table border="1" cellpadding="5">
@@ -36,9 +36,9 @@
             <td><c:out value="${cart.coupon.name}"/></td>
             <td><c:out value="${cart.user.username}"/></td>
             <td>
-                <a href="/food?action=edit&id=${food.id}">Edit</a>
-                <a href="/food?action=delete&id=${food.id}">Delete</a>
-                <a href="/food?action=view&id=${food.id}">View</a>
+                <a href="/cart?action=edit&id=${cart.id}">Edit</a>
+                <a href="/cart?action=delete&id=${cart.id}">Delete</a>
+                <a href="/cart?action=view&id=${cart.id}">View</a>
             </td>
         </tr>
     </c:forEach>
