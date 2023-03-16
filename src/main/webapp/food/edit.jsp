@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>edit</title>
 </head>
 <body>
 <p>
@@ -35,32 +35,37 @@
         </tr>
         <tr>
             <th>Price</th>
-            <td><input type="text" name="price" id="price" size="45"
+            <td>
+                <input type="text" name="price" id="price" size="45"
                        value="<c:out value='${food.price}'/>">
             </td>
         </tr>
         <tr>
             <th>Details</th>
-            <td><input type="text" name="detail" id="detail" size="45"
+            <td>
+                <input type="text" name="detail" id="detail" size="45"
                        value="<c:out value='${food.detail}'/>">
             </td>
         </tr>
         <tr>
             <th>Image</th>
-            <td><input type="text" name="img_link" id="img_link" size="45"
+            <td>
+                <input type="text" name="img_link" id="img_link" size="45"
                        value="<c:out value='${food.img_link}'/>">
+                <img src="${food.img_link}" alt="food_image" width="50" height="50">
             </td>
         </tr>
         <tr>
             <th>Merchant</th>
-            <td><input type="text" name="merchant_id" id="merchant_id" size="45"
+            <td>
+                <input type="text" name="merchant_id" id="merchant_id" size="45"
                        value="<c:out value='${food.merchant.id}'/>">
             </td>
         </tr>
         <tr>
             <th>Certificate</th>
             <td>
-<%--                <input type="text" name="certificate" id="certificate" size="45">--%>
+                <%--                <input type="text" name="certificate" id="certificate" size="45">--%>
                 <select name="certificate">
                     <c:forEach var="option" items="${{'True': 'true', 'False': 'false'}}">
                         <option value="${option.value}">${option.key}</option>
@@ -71,7 +76,6 @@
         <tr>
             <th>Active?</th>
             <td>
-                <%--                    <input type="text" name="is_active" id="merchant_id" size="45">--%>
                 <select name="is_active">
                     <c:forEach var="option" items="${{'True': 'true', 'False': 'false'}}">
                         <option value="${option.value}">${option.key}</option>

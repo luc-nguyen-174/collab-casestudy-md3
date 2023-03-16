@@ -81,12 +81,17 @@ public class CartServlet extends HttpServlet implements IFormServlet {
     }
 
     @Override
-    public void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void showDeleteForm(HttpServletRequest request, HttpServletResponse response)  {
         int id = Integer.parseInt(request.getParameter("id"));
         Cart cart = cartService.findById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("cart/delete.jsp");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cart/delete.jsp");
         request.setAttribute("cart", cart);
-        dispatcher.forward(request, response);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

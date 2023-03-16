@@ -47,7 +47,7 @@
         <h3>Are you sure?</h3>
         <tr>
             <td><input type="submit" value="Delete employee"></td>
-            <td><a href="/food">Back to list</a></td>
+            <td><a href="<c:url value="/food"/>">Back to list</a></td>
         </tr>
     </table>
 </form>

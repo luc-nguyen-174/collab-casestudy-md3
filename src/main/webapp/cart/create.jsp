@@ -28,16 +28,31 @@
                 </td>
             </tr>
 
+            <tr>
+                <th>Quantity</th>
+                <td>
+                    <input type="number" name="quantity" id="quantity" size="45">
+                </td>
+            </tr>
 
             <tr>
-                <th>Certificate</th>
+                <th>Food Name</th>
                 <td>
-                    <%--                    <input type="text" name="certificate" id="certificate" size="45">--%>
-                    <select name="certificate">
-                        <c:forEach var="option" items="${{'True': 'true', 'False': 'false'}}">
-                            <option value="${option.value}">${option.key}</option>
-                        </c:forEach>
-                    </select>
+                    <input type="text" name="food_id" id="food_id" size="45">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Coupon</th>
+                <td>
+                    <input type="text" name="coupon" id="coupon" size="45">
+                </td>
+            </tr>
+
+            <tr>
+                <th>User</th>
+                <td>
+                    <input type="text" name="user_id" id="user_id">
                 </td>
             </tr>
 
