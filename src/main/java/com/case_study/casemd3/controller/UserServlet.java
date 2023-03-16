@@ -132,14 +132,12 @@ public class UserServlet extends HttpServlet implements IFormServlet {
     @Override
     public void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
         String email = request.getParameter("email");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         int address_id = Integer.parseInt(request.getParameter("address_id"));
         boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
-        User user = new User(id, username, password, email, name, phone, address_id, is_active);
+        User user = new User(id, email, name, phone, address_id, is_active);
         userService.save(user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
         dispatcher.forward(request, response);

@@ -23,6 +23,11 @@ public class User {
         this.is_active = is_active;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public User(int id, String username, String password, String email, String name, String phone, int address_id, boolean is_active) {
         this.id = id;
         this.username = username;
@@ -42,6 +47,15 @@ public class User {
         this.name = name;
         this.phone = phone;
         this.address = address;
+        this.is_active = is_active;
+    }
+
+    public User(int id, String name, String email, String phone, int address_id, boolean is_active) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+        this.address_id = address_id;
         this.is_active = is_active;
     }
 

@@ -18,7 +18,7 @@
     <form method="post">
         <table border="1" cellpadding="5">
             <caption>
-                <h2>Food Information</h2>
+                <h2>Merchant Information</h2>
             </caption>
             <tr>
                 <td>Name: </td>
