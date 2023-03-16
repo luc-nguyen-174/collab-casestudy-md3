@@ -9,8 +9,8 @@
             border-collapse: collapse;
         }
 
-        .fa-eye {
-
+        .fa-solid {
+            font-size: 20px;
         }
     </style>
 </head>
