@@ -1,7 +1,10 @@
 package com.case_study.casemd3.controller;
 
+import com.case_study.casemd3.connect.ConnectDB;
 import com.case_study.casemd3.model.Cart;
+import com.case_study.casemd3.model.Coupon;
 import com.case_study.casemd3.model.Food;
+import com.case_study.casemd3.model.User;
 import com.case_study.casemd3.service.cart.CartService;
 import com.case_study.casemd3.service.coupon.CouponService;
 import com.case_study.casemd3.service.food.FoodService;
@@ -22,7 +25,11 @@ public class CartServlet extends HttpServlet implements IFormServlet {
 
     public void init() {
         cartService = new CartService();
+        foodService = new FoodService();
+        couponService = new CouponService();
+        userService = new UserService();
     }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,11 +50,19 @@ public class CartServlet extends HttpServlet implements IFormServlet {
             case "view":
                 viewDetails(request, response);
                 break;
+            case "addtocart":
+
+                addtocart(request, response);
+                break;
             default:
                 list(request, response);
                 break;
         }
     }
+
+    private void addtocart(HttpServletRequest request, HttpServletResponse response) {
+    }
+
 
     //------------------------------------------------------------------------------------------------------
     @Override
@@ -67,7 +82,7 @@ public class CartServlet extends HttpServlet implements IFormServlet {
                 delete(request, response);
                 break;
             case "cartload":
-                cartLoad(request,response);
+                cartLoad(request, response);
                 break;
             default:
                 break;
@@ -75,7 +90,19 @@ public class CartServlet extends HttpServlet implements IFormServlet {
     }
 
     private void cartLoad(HttpServletRequest request, HttpServletResponse response) {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        Food food = foodService.findById(id);
+        request.setAttribute("food", food);
+        Coupon coupon = couponService.findById(id);
+        request.setAttribute("coupon", coupon);
+        User user = userService.findById(id);
+        request.setAttribute("user", user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cart/addtocart.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //-------------------------------------------------Method Get-----------------------------------------------------
@@ -88,7 +115,7 @@ public class CartServlet extends HttpServlet implements IFormServlet {
     }
 
     @Override
-    public void showDeleteForm(HttpServletRequest request, HttpServletResponse response)  {
+    public void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Cart cart = cartService.findById(id);
 
@@ -106,8 +133,8 @@ public class CartServlet extends HttpServlet implements IFormServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Cart cart = cartService.findById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("cart/edit.jsp");
-        request.setAttribute("cart",cart);
-        dispatcher.forward(request,response);
+        request.setAttribute("cart", cart);
+        dispatcher.forward(request, response);
     }
 
     @Override
@@ -116,13 +143,13 @@ public class CartServlet extends HttpServlet implements IFormServlet {
         Cart cart = cartService.findById(id);
         request.setAttribute("cart", cart);
         RequestDispatcher dispatcher = request.getRequestDispatcher("cart/view.jsp");
-        dispatcher.forward(request,response);
+        dispatcher.forward(request, response);
     }
 
     @Override
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Cart> carts = cartService.findAll();
-        request.setAttribute("carts",carts);
+        request.setAttribute("carts", carts);
         RequestDispatcher dispatcher = request.getRequestDispatcher("cart/list.jsp");
         try {
             dispatcher.forward(request, response);
@@ -134,8 +161,6 @@ public class CartServlet extends HttpServlet implements IFormServlet {
     //---------------------------------------------------Method Post---------------------------------------------------
     @Override
     public void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
 
     }
 

@@ -15,14 +15,6 @@
             <td><c:out value="${user.id}"/></td>
         </tr>
         <tr>
-            <td>USERNAME</td>
-            <td><c:out value="${user.username}"/></td>
-        </tr>
-        <tr>
-            <td>PASSWORD</td>
-            <td><c:out value="${user.password}"/></td>
-        </tr>
-        <tr>
             <td>NAME</td>
             <td><c:out value="${user.name}"/></td>
         </tr>
