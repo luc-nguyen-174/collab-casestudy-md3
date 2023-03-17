@@ -58,7 +58,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0 pe-4">
-                    <a href="../indexx.html" class="nav-item nav-link active">Home</a>
+                    <a href="#" class="nav-item nav-link active">Home</a>
                     <a href="/food?action=search" class="nav-item nav-link">SEARCH FOOD</a>
                     <a href="../team.html" class="nav-item nav-link">MERCHANT MANAGER</a>
                     <a href="../menu.html" class="nav-item nav-link">Menu</a>
@@ -82,11 +82,10 @@
             <div class="container my-5 py-5">
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
-                        <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam
-                            dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
-                            stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                        <h1 class="display-3 text-white animated slideInLeft">Welcome to<br>C1122H1</h1>
+                        <p class="text-white animated slideInLeft mb-4 pb-2">Chao xìn các bạn dễ thương lớp C1122H1.
+                        Chúng tôi là nhóm 2, trưa nay ăn gì</p>
+                        <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Liên hệ book phòng</a>
                     </div>
                     <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                         <img class="img-fluid" src="../img/hero.png" alt="">
@@ -123,9 +122,8 @@
                     <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
                     <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Trưa nay C1122H1 ăn gì???</h1>
                     <p class="mb-4"></p>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
-                        amet</p>
+                    <p class="mb-4">Dựa trên kinh nghiệm 4 tháng đặt cơm cho lớp của Huy, chúng tôi tự tin sẽ mang đến
+                        những trải nghiệm không thể toẹt vời hơn. Cảm ơn các ấy ấy.</p>
                     <div class="row g-4 mb-4">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center border-start border-5 border-primary px-3">

@@ -29,7 +29,7 @@
                                 <form>
                                     <p>Please login to your account</p>
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="form2Example11" class="form-control"
+                                        <input type="t" id="form2Example11" class="form-control"
                                                name="user" placeholder="Phone number or email address"/>
                                         <label class="form-label" for="form2Example11">Username</label>
                                     </div>
@@ -39,9 +39,9 @@
                                         <label class="form-label" for="form2Example11">Password</label>
                                     </div>
                                     <div class="text-center pt-1 mb-5 pb-1">
-                                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                        <a href="/food"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                                                 type="button">Log in
-                                        </button>
+                                        </button></a>
                                         <a class="text-muted" href="#!">Forgot password?</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
