@@ -59,20 +59,22 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0 pe-4">
                     <a href="../indexx.html" class="nav-item nav-link active">Home</a>
-                    <a href="../about.html" class="nav-item nav-link">About</a>
-                    <a href="../service.html" class="nav-item nav-link">Service</a>
+                    <a href="/food?action=search" class="nav-item nav-link">SEARCH FOOD</a>
+                    <a href="../team.html" class="nav-item nav-link">MERCHANT MANAGER</a>
                     <a href="../menu.html" class="nav-item nav-link">Menu</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="../booking.html" class="dropdown-item">Booking</a>
-                            <a href="../team.html" class="dropdown-item">Our Team</a>
-                            <a href="../testimonial.html" class="dropdown-item">Testimonial</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="/user" class="dropdown-item">CRUD USER</a>
+                                <a href="/merchants" class="dropdown-item">CRUD MERCHANT</a>
+                                <a href="/coupon" class="dropdown-item">CRUD COUPON</a>
+                            </div>
                         </div>
                     </div>
-                    <a href="../contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="../contact.html" class="nav-item nav-link">Liên hệ</a>
                 </div>
-                <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
+                <a href="/cart" class="btn btn-primary py-2 px-4"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </nav>
 
@@ -119,27 +121,26 @@
                 </div>
                 <div class="col-lg-6">
                     <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                    <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                        eos erat ipsum et lorem et sit, sed stet lorem sit.</p>
+                    <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Trưa nay C1122H1 ăn gì???</h1>
+                    <p class="mb-4"></p>
                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
                         eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
                         amet</p>
                     <div class="row g-4 mb-4">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15</h1>
+                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">480</h1>
                                 <div class="ps-4">
-                                    <p class="mb-0">Years of</p>
-                                    <h6 class="text-uppercase mb-0">Experience</h6>
+                                    <p class="mb-0">hours of</p>
+                                    <h6 class="text-uppercase mb-0">Studying at CODEGYM</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50</h1>
+                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">100</h1>
                                 <div class="ps-4">
-                                    <p class="mb-0">Popular</p>
+                                    <p class="mb-0">Ae</p>
                                     <h6 class="text-uppercase mb-0">Master Chefs</h6>
                                 </div>
                             </div>
@@ -220,53 +221,202 @@
                     </div>
                     <div id="tab-2" class="tab-pane fade show p-0">
                         <div class="row g-4">
-                            <c:forEach items="${foods}" var="food">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <a href="/food?action=view&id=${food.id}">
-                                            <img class="flex-shrink-0 img-fluid rounded" src="${food.img_link}"
-                                                 alt="img"
-                                                 style="width: 80px;">
-                                        </a>
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>${food.name}</span>
-                                                <span class="text-primary">${food.price}</span>
-                                            </h5>
-                                            <small class="fst-italic">${food.detail}</small>
-                                            <big>${food.merchant.name}</big>
-                                        </div>
-
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Thập cẩm</span>
+                                            <span class="text-primary">350000</span>
+                                        </h5>
+                                        <small class="fst-italic">Toàn thịt bòa với thịt vịt</small>
                                     </div>
                                 </div>
-
-                            </c:forEach>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Mì ramen trung quốc</span>
+                                            <span class="text-primary">800000</span>
+                                        </h5>
+                                        <small class="fst-italic">Đặc sản tung của</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Pizza gà nấm</span>
+                                            <span class="text-primary">180000</span>
+                                        </h5>
+                                        <small class="fst-italic">Chắc là không có gà với nấm</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Beaf-steak</span>
+                                            <span class="text-primary">250000</span>
+                                        </h5>
+                                        <small class="fst-italic">Chưa ăn mà chắc k nên ăn</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Nẩu</span>
+                                            <span class="text-primary">500000</span>
+                                        </h5>
+                                        <small class="fst-italic">Lẩu lạnh</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>French fries</span>
+                                            <span class="text-primary">50000</span>
+                                        </h5>
+                                        <small class="fst-italic">Không giòn mấy mà ăn tạm cũng đc</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Chicken Pizza</span>
+                                            <span class="text-primary">120000</span>
+                                        </h5>
+                                        <small class="fst-italic">Nai sừ</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Chicken Burger</span>
+                                            <span class="text-primary">40000</span>
+                                        </h5>
+                                        <small class="fst-italic">Burger gà ngon tọet vời</small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div id="tab-3" class="tab-pane fade show p-0">
                         <div class="row g-4">
-                                <c:forEach items="${foods}" var="food">
-                                    <div class="col-lg-6">
-                                        <div class="d-flex align-items-center">
-                                            <a href="/food?action=view&id=${food.id}">
-                                                <img class="flex-shrink-0 img-fluid rounded" src="${food.img_link}"
-                                                     alt="img"
-                                                     style="width: 80px;">
-                                            </a>
-                                            <div class="w-100 d-flex flex-column text-start ps-4">
-                                                <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                    <span>${food.name}</span>
-                                                    <span class="text-primary">${food.price}</span>
-                                                </h5>
-                                                <small class="fst-italic">${food.detail}</small>
-                                                <big>${food.merchant.name}</big>
-                                            </div>
-
-                                        </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Thập cẩm gà</span>
+                                            <span class="text-primary">300000</span>
+                                        </h5>
+                                        <small class="fst-italic">Toàn thịt bòa với lợn</small>
                                     </div>
-
-                                </c:forEach>
-
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Mì ramen hàn quốc</span>
+                                            <span class="text-primary">80000</span>
+                                        </h5>
+                                        <small class="fst-italic">Đặc sản hàn quốc</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Pizza gà nấm</span>
+                                            <span class="text-primary">180000</span>
+                                        </h5>
+                                        <small class="fst-italic">Chắc là không có gà với nấm</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Beaf-steak</span>
+                                            <span class="text-primary">250000</span>
+                                        </h5>
+                                        <small class="fst-italic">Chưa ăn mà chắc k nên ăn</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Nẩu</span>
+                                            <span class="text-primary">500000</span>
+                                        </h5>
+                                        <small class="fst-italic">Lẩu lạnh</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>French fries</span>
+                                            <span class="text-primary">50000</span>
+                                        </h5>
+                                        <small class="fst-italic">Không giòn mấy mà ăn tạm cũng đc</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Chicken Pizza</span>
+                                            <span class="text-primary">120000</span>
+                                        </h5>
+                                        <small class="fst-italic">Nai sừ</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
+                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                            <span>Chicken Burger</span>
+                                            <span class="text-primary">40000</span>
+                                        </h5>
+                                        <small class="fst-italic">Burger gà ngon tọet vời</small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,7 +440,7 @@
                             <img class="img-fluid" src="../img/tuan.jpg" alt="">
                         </div>
                         <h5 class="mb-0">Nguyễn Anh Tuấn</h5>
-                        <small>Designation</small>
+                        <small>--Copy paste ra cái trang này--</small>
                         <div class="d-flex justify-content-center mt-3">
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -304,7 +454,7 @@
                             <img class="img-fluid" src="../img/doan.jpg" alt="">
                         </div>
                         <h5 class="mb-0">Đoàn đồ đạc</h5>
-                        <small>Designation</small>
+                        <small>Dại gái</small>
                         <div class="d-flex justify-content-center mt-3">
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -318,7 +468,7 @@
                             <img class="img-fluid" src="../img/nam2.jpg" alt="">
                         </div>
                         <h5 class="mb-0">Anh Nam hỏng xe</h5>
-                        <small>Designation</small>
+                        <small>Anh Nam 1 vệt</small>
                         <div class="d-flex justify-content-center mt-3">
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -332,7 +482,7 @@
                             <img class="img-fluid" src="../img/luc.jpg" alt="">
                         </div>
                         <h5 class="mb-0">Nguyễn Tiến Lực</h5>
-                        <small>Designation</small>
+                        <small>Nhóm trưởng</small>
                         <div class="d-flex justify-content-center mt-3">
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -362,7 +512,7 @@
                              style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Nguyễn Tiến Lực</h5>
-                            <small>Hơi gầy mà cũng tạm</small>
+                            <small>Hơi gầy mà thôi dùng tạm</small>
                         </div>
                     </div>
                 </div>
@@ -374,7 +524,7 @@
                              style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Triệu Quân Sự</h5>
-                            <small>2k1 - gầm cao máy thoáng</small>
+                            <small>2k4 - gầm cao máy thoáng</small>
                         </div>
                     </div>
                 </div>
@@ -392,7 +542,7 @@
                 </div>
                 <div class="testimonial-item bg-transparent border rounded p-4">
                     <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                    <p></p>
+                    <p>Nói chung là toẹt vời</p>
                     <div class="d-flex align-items-center">
                         <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/tuan.jpg"
                              style="width: 50px; height: 50px;">
@@ -422,9 +572,9 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>22TT01 - MONCITY</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>Lựcvànhữngngườibạn@3ae.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -435,13 +585,13 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
                     <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                    <p>09AM - 09PM</p>
+                    <p>08AM - 18PM</p>
                     <h5 class="text-light fw-normal">Sunday</h5>
                     <p>10AM - 08PM</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>Hãy gửi tâm thư đến chúng tôi, đằng nào cũng không ai đọc đâu.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text"
                                placeholder="Your email">
@@ -471,7 +621,7 @@
 <script src="../lib/tempusdominus/js/moment.min.js"></script>
 <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
+<script src="https://kit.fontawesome.com/efeb346dcb.js" crossorigin="anonymous"></script>
 <!-- Template Javascript -->
 <script src="../js/main.js"></script>
 </body>
