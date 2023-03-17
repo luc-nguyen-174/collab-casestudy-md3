@@ -17,46 +17,17 @@
 </h2>
 <form action="" method="post">
     <c:if test="${cart != null}">
-        <input type="hidden" name="id" value="<c:out value='${food.id}'/>"/>
+        <input type="hidden" name="id" value="<c:out value='${cart.id}'/>"/>
+
+        <input type="hidden" name="quantity" value="<c:out value='${cart.quantity}'/>"/>
+
+        <input type="hidden" name="food_id" value="<c:out value='${cart.food_id}'/>"/>
+
+        <input type="hidden" name="coupon" value="<c:out value='${cart.coupon_id}'/>"/>
+
+        <input type="hidden" name="user" value="<c:out value='${cart.user_id}'/>"/>
     </c:if>
-    <tr>
-        <th>Card ID</th>
-        <td>
-            <input type="hidden" name="id" id="id" size="45"
-                   value="<c:out value='${cart.id}'/>">
-        </td>
-    </tr>
-    <tr>
-        <th>Food Quantity</th>
-        <td>
-            <input type="hidden" name="quantity" id="quantity" size="45"
-                   value="<c:out value='${cart.quantity}'/>">
-        </td>
-    </tr>
-    <tr>
-        <th>Food Name</th>
-        <td>
 
-            <input type="hidden" name="food_id" id="food_id" size="45"
-                   value="<c:out value='${cart.food.id}'/>">
-
-        </td>
-        <td>${card.food.name}</td>
-    </tr>
-    <tr>
-        <th>Coupon</th>
-        <td>
-            <input type="hidden" name="coupon_id" id="coupon_id" size="45"
-                   value="<c:out value='${cart.coupon.id}'/>">
-        </td>
-    </tr>
-    <tr>
-        <th>User</th>
-        <td>
-            <input type="text" name="user_id" id="user_id" size="45"
-                   value="<c:out value='${cart.user.id}'/>">
-        </td>
-    </tr>
 </form>
 </body>
 </html>

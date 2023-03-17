@@ -44,9 +44,23 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
             case "search":
                 showSearchForm(request, response);
                 break;
+            case "addtocart":
+                addToCart(request, response);
             default:
                 list(request, response);
                 break;
+        }
+    }
+
+    private void addToCart(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Food food = foodService.findById(id);
+        request.setAttribute("food", food);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("food/addtocart.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -71,10 +85,14 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
             case "search":
                 search(request,response);
                 break;
+            case "addtocart":
+                addtocart(request, response);
             default:
                 break;
         }
     }
+
+
 
     private void search(HttpServletRequest request, HttpServletResponse response) {
         String food_name = request.getParameter("food_name");
@@ -183,6 +201,25 @@ public class FoodServlet extends HttpServlet implements IFormServlet {
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addtocart(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String detail = request.getParameter("detail");
+        String img_link = request.getParameter("img_link");
+        int merchant = Integer.parseInt(request.getParameter("merchant_id"));
+
+        boolean certificate = Boolean.parseBoolean(request.getParameter("certificate"));
+        boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
+
+        Food food = new Food(id, name, price, detail, img_link, merchant, certificate, is_active);
+        try {
+            foodService.addFoodToCart(food.getId());
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

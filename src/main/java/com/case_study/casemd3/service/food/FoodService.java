@@ -292,7 +292,7 @@ public class FoodService implements IFood {
             conn = getConnection();
             conn.setAutoCommit(false);
             statement = conn.prepareStatement(SELECT_FOOD_BY_NAME);
-            String a= "%" + food_name + "%";
+            String a = "%" + food_name + "%";
             statement.setString(1, a);
             rs = statement.executeQuery();
             while (rs.next()) {
@@ -323,5 +323,42 @@ public class FoodService implements IFood {
             }
         }
         return foods;
+    }
+
+    public void addFoodToCart(int foodId) {
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            conn.setAutoCommit(false);
+            statement = conn.prepareStatement("SELECT id FROM food WHERE id = ?");
+            statement.setInt(1, foodId);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                statement = conn.prepareStatement("INSERT INTO cart (food_id) values (?)");
+                statement.setInt(1, id);
+                int result = statement.executeUpdate();
+                if (result > 0) {
+                    System.out.println("Món ăn đã được thêm vào giỏ hàng");
+                } else {
+                    System.out.println("Lỗi khi thêm món ăn vào giỏ hàng");
+                }
+            } else {
+                System.out.println("Không tìm thấy thông tin món ăn");
+            }
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (statement != null) statement.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

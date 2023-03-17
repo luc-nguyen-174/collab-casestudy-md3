@@ -47,7 +47,6 @@
                        value="<c:out value='${cart.food.id}'/>">
 
             </td>
-            <td>${card.food.name}</td>
         </tr>
         <tr>
             <th>Coupon</th>
